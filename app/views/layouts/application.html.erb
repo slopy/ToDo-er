@@ -8,11 +8,26 @@
 </head>
 <body ng-app="todoer">
 
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <ui-view></ui-view>
-    </div>
-  </div>
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <span class="navbar-brand" href="#">
+	        ToDo list 
+	      </span>
+	    </div>
+
+		<ul class="nav navbar-nav">
+		   <li><a href="#">Goals</a></li>
+		</ul>
+
+	  </div>
+	</nav>
+
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+		  <ui-view></ui-view>
+		</div>
+	</div>
 
 </body>
 </html>

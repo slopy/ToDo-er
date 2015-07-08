@@ -13,9 +13,13 @@ function($stateProvider, $urlRouterProvider) {
       controller: 'MainController'
     })
     .state('goals', {
-	  url: '/goals/{id}',
-	  templateUrl: 'goals/_goals.html',
-	  controller: 'GoalsController'
+        url: '/goals/{id}',
+        templateUrl: 'goals/_goals.html',
+        controller: 'GoalsController',
+        resolve: {
+          goalPromise: ['goals', function(posts){
+            return goals.getAll(); }]
+        }
 	});
 
   $urlRouterProvider.otherwise('home');
