@@ -37,6 +37,8 @@ gem "therubyracer"
 gem 'twitter-bootstrap-rails'
 gem 'sprockets', '2.12.3'
 
+gem 'responders'
+
 group :test, :development do
   gem "rspec-rails", "~> 2.0"
   gem "factory_girl_rails", "~> 4.0"

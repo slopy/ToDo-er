@@ -5,3 +5,14 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+(1..10).each { |g|
+
+Goal.create(
+	title: "goal nr #{g}"
+	description: "Description for goal nr #{g}"
+	active: true
+	)
+
+}
