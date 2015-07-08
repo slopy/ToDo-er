@@ -31,13 +31,14 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'twitter-bootstrap-rails'
+gem 'devise'
 
 # ---------- For AngularJS -----------
 gem 'angular-rails-templates'
 gem 'angular_rails_csrf'
-
 gem "therubyracer"
-gem 'twitter-bootstrap-rails'
+
 gem 'sprockets', '2.12.3'
 
 gem 'responders'
