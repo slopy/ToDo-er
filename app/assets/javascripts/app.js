@@ -10,7 +10,17 @@ function($stateProvider, $urlRouterProvider) {
     .state('home', {
       url: '/home',
       templateUrl: 'home/_home.html',
-      controller: 'MainController'
+      controller: 'MainController',
+      onEnter: ['$state', 'Auth', function($state, Auth) {
+
+        if (Auth.isAuthenticated() == true) {
+
+        }
+        else {
+          $state.go('login');
+        }
+
+      }]
     })
     .state('goals', {
         url: '/goals/{id}',

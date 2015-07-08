@@ -4,9 +4,7 @@ angular.module('todoer')
 '$scope',
 'goals',
 function($scope, goals){
-
-
-
+	
 	$scope.addGoal = function(){
 
 	if(!$scope.title || $scope.title === '') { return; }
@@ -22,6 +20,7 @@ function($scope, goals){
 
 
 	}; // end of addGoal
+
 	goals.getAll()
 	$scope.goals = goals.goals
 } // end of function
