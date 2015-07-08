@@ -7,7 +7,7 @@ angular.module('todoer')
 	var obj = {
 		goals: []
 		};
-	
+
 	obj.getAll = function() {
 		return $http.get('/goals.json').success(function(data){
 			angular.copy(data, obj.goals);
@@ -19,8 +19,9 @@ angular.module('todoer')
 			obj.goals.push(data);
 		});
 	};
-
+	
 	return obj;
+
 
 }]) // end of factory
 

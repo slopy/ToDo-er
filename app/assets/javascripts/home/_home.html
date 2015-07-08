@@ -1,7 +1,15 @@
 
-    <div class="page-header">
-      <h1>Home</h1>
-    </div>
+
+    <div ng-repeat="goal in goals">
+	    <h3> {{goal.title}} </h3>
+	    <p>
+	    	{{goal.description}}
+	    </p>
+	    <span>Active: {{goal.active}}</span>
+	    <span>Done: {{goal.done}}</span>
+	    <span>Done %: {{done.done_percent}}</span>
+  	</div>
+
 
     <form ng-submit="addGoal()">
         <h3>Add a new Goal</h3>
