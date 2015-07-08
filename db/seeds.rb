@@ -10,8 +10,8 @@
 (1..10).each { |g|
 
 Goal.create(
-	title: "goal nr #{g}"
-	description: "Description for goal nr #{g}"
+	title: "goal nr #{g}",
+	description: "Description for goal nr #{g}",
 	active: true
 	)
 
