@@ -32,7 +32,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# ---------- For Angular: -----------
+# ---------- For AngularJS -----------
 gem 'angular-rails-templates'
 gem 'angular_rails_csrf'
 
@@ -41,7 +41,13 @@ gem 'twitter-bootstrap-rails'
 gem 'sprockets', '2.12.3'
 
 gem 'responders'
-# ---------- For Angular: -----------
+# ---------- For AngularJS -----------
+
+
+# ---------- For Debuging ------------
+gem 'pry'
+# ---------- For Debuging -----------
+
 
 group :test, :development do
   gem "rspec-rails", "~> 2.0"
