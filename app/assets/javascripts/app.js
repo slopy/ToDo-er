@@ -1,6 +1,6 @@
-angular.module('todoer', [])
+// angular.module('todoer', [])
 
-angular.module('todoer', ['ui.router'])
+angular.module('todoer', ['ui.router', 'templates'])
 .config([
 '$stateProvider',
 '$urlRouterProvider',
@@ -9,23 +9,14 @@ function($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('home', {
       url: '/home',
-      templateUrl: '/home.html',
+      templateUrl: 'home/_home.html',
       controller: 'MainController'
-    });
+    })
+    .state('goals', {
+	  url: '/goals/{id}',
+	  templateUrl: 'goals/_goals.html',
+	  controller: 'GoalsController'
+	});
 
   $urlRouterProvider.otherwise('home');
-}])
-
-.controller('MainController', [
-'$scope',
-function($scope){
-	$scope.test = "Test test"
-}
-])
-
-
-
-
-.factory('goals', [function(){
-  // service body
 }])

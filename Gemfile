@@ -35,6 +35,7 @@ gem 'angular-rails-templates'
 
 gem "therubyracer"
 gem 'twitter-bootstrap-rails'
+gem 'sprockets', '2.12.3'
 
 group :test, :development do
   gem "rspec-rails", "~> 2.0"
