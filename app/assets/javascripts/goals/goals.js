@@ -5,7 +5,7 @@ angular.module('todoer')
 	function($http){
 
 	var obj = {
-		goals: [],
+		goals: []
 		};
 
 	obj.getAll = function() {
