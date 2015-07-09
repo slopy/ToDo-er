@@ -20,16 +20,19 @@ angular.module('todoer')
             var done_goals = []
 
             angular.forEach(data ,function(goal){
-                
-                if (goal.active == true) {
-                    active_goals.push(goal)
-                } else {
-                    waiting_goals.push(goal)
-                }
+
                 if (goal.done == true) {
                     done_goals.push(goal)
+                } else {
+                
+                    if ((goal.active == true) && (goal.done != true)) {
+                        active_goals.push(goal)
+                    } else {
+                        waiting_goals.push(goal)
+                    }
+              
                 }
-
+                
                 angular.copy(active_goals, obj.active_goals);
                 angular.copy(waiting_goals, obj.waiting_goals);
                 angular.copy(done_goals, obj.done_goals);

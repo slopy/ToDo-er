@@ -1,74 +1,135 @@
 <div class="row">
     <div class="col-sm-4">
-        <h2>Waiting goals</h2>
+
+        <h1 class="text-center col-title">Waiting goals</h1>
+       
         <div ng-repeat="goal in goals.waiting_goals">
-            <h3> {{goal.title}} </h3>
-            <span><a href="#/goal/{{goal.id}}">link</a></span>
-            <p>
-            	{{goal.description}}
-            </p>
-            <button ng-click="toggleActive(goal.id)">Active: {{goal.active}}</button>
+            <div class="goal thumbnail"> 
+                <div class="row container-fluid"> 
 
-            <span ng-hide="{{goal.done_percent == ''}}">
-                Done in {{done.done_percent}} %
-            </span>
-            <br/>
-            <span>Show, Edit, Delete</span>
+                <div class="col-sm-10 thumbnail-left">
+                    <h3> {{goal.title}} </h3>
+
+                    <p>
+                        {{goal.description}}
+                    </p>
+
+                    <span ng-hide="{{goal.done_percent == ''}}">
+                        Accomplished in {{done.done_percent}} %
+                    </span>
+
+                </div>
+                <div class="col-sm-2 thumbnail-right">
+                    <a class="btn btn-sm btn-primary pull-right" ng-click="toggleActive(goal.id)">
+                        >>
+                    </a>
+                </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 text-right">
+                        <a class="btn btn-sm btn-info" href="#/goal/{{goal.id}}">Details</a>
+                        <a class="btn btn-sm btn-default">Edit</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+   
 
     <div class="col-sm-4">
-        <h2>Active goals</h2>
+
+        <h1 class="text-center col-title">Active goals</h1>
+
         <div ng-repeat="goal in goals.active_goals">
-            <h3> {{goal.title}} </h3>
-            <span><a href="#/goal/{{goal.id}}">link</a></span>
-            <p>
-                {{goal.description}}
-            </p>
-            <button ng-click="toggleActive(goal.id)">Active: {{goal.active}}</button>
-            
-            <button ng-click="toggleDone(goal.id)">Done: {{goal.done}}</button>
+            <div class="goal thumbnail"> 
+                <div class="row container-fluid"> 
+                    <div class="col-sm-9 col-sm-offset-1 thumbnail-left">
+                        <h3> {{goal.title}} </h3>
+          
+                        <p>
+                            {{goal.description}}
+                        </p>
 
-            <span ng-hide="{{goal.done_percent == ''}}">Done: {{done.done_percent}} %</span>
-            <br/>
-            <span>Show, Edit, Delete</span>
+                        <span ng-hide="{{goal.done_percent == ''}}">
+                            Accomplished in {{done.done_percent}} %
+                        </span>
+
+                    </div>
+                    <div class="col-sm-2 thumbnail-right">
+                        <a class="btn btn-sm btn-primary pull-right" ng-click="toggleDone(goal.id)">
+                            >>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 text-left">
+                        <a class="btn btn-sm btn-warning pull-left" ng-click="toggleActive(goal.id)">
+                            <<
+                        </a>
+                    </div>
+                    <div class="col-sm-10 text-right">
+                        <a class="btn btn-sm btn-info" href="#/goal/{{goal.id}}">Details</a>
+                        <a class="btn btn-sm btn-default">Edit</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="col-sm-4">
-        <h2>Done goals</h2>
+    
+        <h1 class="text-center col-title">Done goals</h1>
+
         <div ng-repeat="goal in goals.done_goals">
-            <h3> {{goal.title}} </h3>
-            <span><a href="#/goal/{{goal.id}}">link</a></span>
-            <p>
-                {{goal.description}}
-            </p>
-            <span>Active: {{goal.active}}</span>
-            <span>Done: {{goal.done}}</span>
-            <span>Done %: {{done.done_percent}}</span>
-            <br/>
-            <span>Show, Edit, Delete</span>
+            <div class="goal thumbnail"> 
+                <div class="row container-fluid"> 
+                    <div class="col-sm-9 col-sm-offset-1 thumbnail-left">
+                        <h3> {{goal.title}} </h3>
+          
+                        <p>
+                            {{goal.description}}
+                        </p>
+
+                        <span ng-hide="{{goal.done_percent == ''}}">
+                            Accomplished in {{done.done_percent}} %
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 text-left">
+                        <a class="btn btn-sm btn-warning " ng-click="toggleDone(goal.id)">
+                            <<
+                        </a>
+                    </div>
+                    <div class="col-sm-10 text-right">
+                        <a class="btn btn-sm btn-info" href="#/goal/{{goal.id}}">Details</a>
+                        <a class="btn btn-sm btn-default">Edit</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-
-
-
+<div id="add-goal-form">
     <form ng-submit="addGoal()">
         <h3>Add a new Goal</h3>
 
         <div class="form-group">
-          <input type="text"
-            class="form-control"
-            placeholder="Title"
-            ng-model="title"></input>
+            <input type="text"
+                class="form-control"
+                placeholder="Title"
+                ng-model="title"></input>
         </div>
+
         <div class="form-group">
-          <input type="text"
-          class="form-control"
-          placeholder="description"
-          ng-model="description"></input>
+            <input type="text"
+                class="form-control"
+                placeholder="description"
+                ng-model="description"></input>
         </div>
+
         <button type="submit" class="btn btn-primary">Goal</button>
     </form>
+</div>

@@ -1,7 +1,7 @@
 class GoalsController < ApplicationController
 
     def index
-        respond_with Goal.where("user_id == ?",current_user.id)
+        respond_with Goal.where("user_id == ?",current_user.id).order(updated_at: :desc)
     end
 
     def create
