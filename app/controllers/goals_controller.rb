@@ -1,11 +1,14 @@
 class GoalsController < ApplicationController
 
   def index
-    respond_with Goal.all
+    respond_with current_user.goals
   end
 
   def create
-    respond_with Goal.create(goal_params)
+    goal = Goal.new(goal_params)
+    goal.user = current_user
+    goal.save!
+    respond_with goal
   end
 
   def show
