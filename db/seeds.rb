@@ -12,7 +12,7 @@
 Goal.create(
 	title: "goal nr #{g}",
 	description: "Description for goal nr #{g}",
-	active: true
+    user_id: User.first
 	)
 
 }

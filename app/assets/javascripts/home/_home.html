@@ -1,15 +1,17 @@
 <div class="row">
     <div class="col-sm-4">
         <h2>Waiting goals</h2>
-        <div ng-repeat="goal in goals">
+        <div ng-repeat="goal in goals.waiting_goals">
             <h3> {{goal.title}} </h3>
             <span><a href="#/goal/{{goal.id}}">link</a></span>
             <p>
             	{{goal.description}}
             </p>
-            <span>Active: {{goal.active}}</span>
-            <span>Done: {{goal.done}}</span>
-            <span>Done %: {{done.done_percent}}</span>
+            <button ng-click="toggleActive(goal.id)">Active: {{goal.active}}</button>
+
+            <span ng-hide="{{goal.done_percent == ''}}">
+                Done in {{done.done_percent}} %
+            </span>
             <br/>
             <span>Show, Edit, Delete</span>
         </div>
@@ -17,15 +19,17 @@
 
     <div class="col-sm-4">
         <h2>Active goals</h2>
-        <div ng-repeat="goal in active_goals">
+        <div ng-repeat="goal in goals.active_goals">
             <h3> {{goal.title}} </h3>
             <span><a href="#/goal/{{goal.id}}">link</a></span>
             <p>
                 {{goal.description}}
             </p>
-            <span>Active: {{goal.active}}</span>
-            <span>Done: {{goal.done}}</span>
-            <span>Done %: {{done.done_percent}}</span>
+            <button ng-click="toggleActive(goal.id)">Active: {{goal.active}}</button>
+            
+            <button ng-click="toggleDone(goal.id)">Done: {{goal.done}}</button>
+
+            <span ng-hide="{{goal.done_percent == ''}}">Done: {{done.done_percent}} %</span>
             <br/>
             <span>Show, Edit, Delete</span>
         </div>
@@ -33,7 +37,7 @@
 
     <div class="col-sm-4">
         <h2>Done goals</h2>
-        <div ng-repeat="goal in all_goals">
+        <div ng-repeat="goal in goals.done_goals">
             <h3> {{goal.title}} </h3>
             <span><a href="#/goal/{{goal.id}}">link</a></span>
             <p>

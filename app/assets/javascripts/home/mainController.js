@@ -4,50 +4,46 @@ angular.module('todoer')
 '$scope',
 'goals',
 function($scope, goals){
-	
-	$scope.addGoal = function(){
-    	if(!$scope.title || $scope.title === '') { return; }
-    	if(!$scope.description || $scope.description === '') { return; }
-
-    	goals.create({
-    		title: $scope.title,
-    		description: $scope.description,
-    	});
-
-    	$scope.title = ""
-    	$scope.description = ""
-
-	}; // end of addGoal
 
 	goals.getAll()
 
-    alert(goals.goals.length)
-    $scope.goals = goals.goals
+    $scope.goals = goals
+    
+    $scope.addGoal = function(){
+        if(!$scope.title || $scope.title === '') { return; }
+        if(!$scope.description || $scope.description === '') { return; }
 
-    var active_goals = []
-    var done_goals = []
-    var waiting_goals = []
-    var all_goals = []
+        goals.create({
+            title: $scope.title,
+            description: $scope.description,
+        });
 
-    angular.forEach(goals.goals,function(goal){
+        $scope.title = ""
+        $scope.description = ""
+
+        goals.getAll()
+
+        $scope.goals = goals
+
+    }; // end of addGoal
+
+    $scope.toggleActive = function(id) {
+      
+        goals.toggleActiveState(id)
+        goals.getAll()
+
+        $scope.goals = goals
         
-        if (goal.active == true) {
-            active_goals.push(goal)
-        } else {
-            waiting_goals.push(goal)
-            alert(goal.constructor.name)
-        }
-        
-        if (goal.done == true) {
-            done_goals.push(goal)
-        }
-       
-    })
+    } // end of toggleActive
 
-    $scope.waiting_goals = waiting_goals // 1st column
-    $scope.active_goals = active_goals
-    $scope.done_goals = active_goals
-    $scope.all_goals = goals.goals
+    $scope.toggleDone = function(id) {
+      
+        goals.toggleDoneState(id)
+        goals.getAll()
+
+        $scope.goals = goals
+        
+    } // end of toggleActive
 
 } // end of function
 

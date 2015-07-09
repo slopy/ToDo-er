@@ -10,7 +10,10 @@ Rails.application.routes.draw do
 
   root to: 'application#angular'
 
-  resources :goals
+  resources :goals 
+
+  match 'active_change/:id', to: 'goals#toggleActive', via: :get
+  match 'done_change/:id', to: 'goals#toggleDone', via: :get
 
   
   # Example of regular route:
