@@ -26,5 +26,4 @@ function($scope, $state, Auth){
         $state.go('login')
     });
 
-
 }]);

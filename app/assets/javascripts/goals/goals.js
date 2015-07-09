@@ -5,7 +5,7 @@ angular.module('todoer')
 	function($http){
 
 	var obj = {
-		goals: []
+		goals: [],
 		};
 
 	obj.getAll = function() {
@@ -19,6 +19,12 @@ angular.module('todoer')
 			obj.goals.push(data);
 		});
 	};
+
+    obj.show = function(id) {
+        return $http.get('/goals/' + id + '.json').success(function(data){
+            angular.copy(data, obj.goals);
+        })
+    }
 	
 	return obj;
 

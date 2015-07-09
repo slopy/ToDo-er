@@ -4,5 +4,7 @@ angular.module('todoer')
 '$scope',
 '$stateParams',
 'goals',
-function($scope, $stateParams, goals){}
+function($scope, $stateParams, goals){
+    $scope.goal = goals.goals
+}
 ])
