@@ -50,7 +50,7 @@ function($scope, goals){
     $scope.$on('$viewContentLoaded', function(event) {
       $("a.fancybox").click(function() {
         $.fancybox.open([{ 
-          href : '#add-goal-form',
+          href : '#add_goal_form',
           title: "<h3 class='text-center'>Add mew Goal!</h3><br/>",
           helpers : { 
             title : {
@@ -59,12 +59,8 @@ function($scope, goals){
             }
           },
         }]); // end of fancybox 
-
-
       })  // end of click
     }); // end of $on('$viewContentLoaded'
-
-
 
 } // end of controller function
 

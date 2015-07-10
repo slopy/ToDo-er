@@ -28,6 +28,30 @@
   }
 }
 
-#add-goal-form{
+#add_goal_form{
   display: none
+}
+
+
+// my profile 
+.avatar{
+  font-size: 60px;
+}
+
+
+#my_profile_form_container {
+  display: none;
+  form {
+    position: absolute;
+    right: 0;
+
+  }
+}
+
+#modal_delete_confirmation{
+  width: 200px;
+  text-align: center;
+  button {
+    margin: auto;
+  }
 }

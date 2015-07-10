@@ -1,5 +1,64 @@
-profile <br/>
+<div class="page-header">
+    <h3>My profile</h3>
+</div>
 
-<p>
-    user: {{user}}
-</p>
+<div class="row">
+    <div class="col-sm-8">
+        <div class="row">
+            <div class="col-sm-2">
+                <a class="thumbnail avatar text-center">
+                    <i class="fa fa-user"></i>
+                </a>
+            </div>
+            <div class="col-sm-10">
+                <p>
+                    {{user.email}}
+                </p>
+                <p>
+                    <small> created: {{user.created_at | date : 'd-MM-yyyy' : 'CEST' }} </small>
+                </p>
+                <p>
+                    <button id="edit_user" class="btn btn-info">edit</button>
+                </p>  
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-sm-12">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-sm-4">
+        <div id="my_profile_form_container">
+            <form ng-submit="updateUser()" >
+
+                <div class="input-group">
+                    <input type="email" class="form-control" placeholder="Email" ng-model="user.email">
+                </div>
+                <div class="input-group">
+                    <input type="password" class="form-control" placeholder="Current password" ng-model="user.current_password">
+                </div>
+                <div class="input-group">
+                    <input type="password" class="form-control" placeholder="New password" ng-model="user.password">
+                </div>
+
+                <div class="input-group">
+                    <input type="password" class="form-control" placeholder="Confirm new password" ng-model="user.password_confirmation">
+                </div>
+                <br/>
+                <button type="submit" class="btn btn-success" value="Update">
+                    <i class="fa fa-check"></i>&nbsp Update
+                </button>
+                <a ng-click="deleteClick()" class="btn btn-warning">
+                    <i class="fa fa-trash-o"></i>&nbsp Delete
+                </a>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
