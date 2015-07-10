@@ -31,3 +31,22 @@
 #add-goal-form{
   display: none
 }
+
+#loading-bar-spinner {
+    display: block;
+    position: fixed;
+    left: calc(50% - 70px);
+    top: calc(50% - 70px);
+    width: 1000px;
+    height: 1000px;
+    z-index: 1049;
+}
+
+#loading-bar-spinner .spinner-icon {
+    width: 70px;
+    height: 70px;
+    border: solid 8px transparent;
+    border-top-color: #428BC7;
+    border-left-color: #428BC7;
+    border-radius: 5px;
+}
