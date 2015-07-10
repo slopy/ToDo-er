@@ -1,0 +1,18 @@
+development:  
+  adapter: postgresql
+  encoding: unicode
+  database: development_todoer_database
+  pool: 5
+
+
+test:  
+  adapter: postgresql
+  encoding: unicode
+  database: test_todoer_database
+  pool: 5
+
+production:  
+  adapter: postgresql
+  encoding: unicode
+  database: production_todoer_database
+  pool: 5
