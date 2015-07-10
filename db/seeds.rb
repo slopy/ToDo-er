@@ -7,6 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
+
 (1..10).each { |g|
 
 Goal.create(
