@@ -21,20 +21,3 @@
 //= require angular-devise
 //= require_tree .
 
-
-$(document).on('page:change', function() {
-
-  $("a.fancybox").click(function() {
-    $.fancybox.open([{ 
-      href : '#add-goal-form',
-      title: "<h3 class='text-center'>Add mew Goal!</h3><br/>",
-      helpers : { 
-        title : {
-          type: 'inside',
-          position: 'top'
-        }
-      },
-    }]);
-  }) // end of click
-
-}); // end of page:change

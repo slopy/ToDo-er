@@ -1,4 +1,9 @@
-<div class="collapse navbar-collapse pull-right" ng-controller="NavbarController">
+
+<ul class="nav navbar-nav">
+   <li li ng-show="signedIn()"><a href="#/home">Goals</a></li>
+</ul>
+
+<div class="collapse navbar-collapse pull-right">
   <ul class="nav navbar-nav">
     <li ng-hide="signedIn()"><a href="#/login">Log In</a></li>
     <li ng-hide="signedIn()"><a href="#/register">Register</a></li>

@@ -17,10 +17,7 @@
 	      </span>
 	    </div>
 
-		<ul class="nav navbar-nav">
-		   <li><a ng-show="signedIn()" href="#/home">Goals</a></li>
-		</ul>
-		<div ng-include="'nav/_nav.html'"></div>
+		<div ng-include="'nav/_nav.html'" ng-controller="NavbarController"></div>
 	  </div>
 	</nav>
 

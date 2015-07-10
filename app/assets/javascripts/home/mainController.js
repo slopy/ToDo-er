@@ -47,6 +47,25 @@ function($scope, goals){
         
     } // end of toggleActive
 
-} // end of function
+    $scope.$on('$viewContentLoaded', function(event) {
+      $("a.fancybox").click(function() {
+        $.fancybox.open([{ 
+          href : '#add-goal-form',
+          title: "<h3 class='text-center'>Add mew Goal!</h3><br/>",
+          helpers : { 
+            title : {
+              type: 'inside',
+              position: 'top'
+            }
+          },
+        }]); // end of fancybox 
+
+
+      })  // end of click
+    }); // end of $on('$viewContentLoaded'
+
+
+
+} // end of controller function
 
 ])
