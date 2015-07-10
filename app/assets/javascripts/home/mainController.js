@@ -25,6 +25,8 @@ function($scope, goals){
 
         $scope.goals = goals
 
+        $.fancybox.close()
+
     }; // end of addGoal
 
     $scope.toggleActive = function(id) {

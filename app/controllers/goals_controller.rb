@@ -1,5 +1,7 @@
 class GoalsController < ApplicationController
 
+    before_action :authenticate_user!
+
     def index
         respond_with Goal.where("user_id == ?",current_user.id).order(updated_at: :desc)
     end
