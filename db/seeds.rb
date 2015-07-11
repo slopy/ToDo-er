@@ -13,7 +13,7 @@
 Goal.create(
 	title: "goal nr #{g}",
 	description: "Description for goal nr #{g}",
-    user_id: User.first
+    user_id: User.last
 	)
 
 }

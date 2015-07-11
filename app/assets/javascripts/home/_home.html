@@ -13,10 +13,10 @@
             <div class="goal thumbnail"> 
                 <div class="row container-fluid"> 
 
-                <div class="col-sm-10 thumbnail-left">
+                <div class="col-xs-9 col-xs-offset-1 thumbnail-left">
                     <h3> {{goal.title}} </h3>
 
-                    <p>
+                    <p class="goal_description">
                         {{goal.description}}
                     </p>
 
@@ -25,7 +25,7 @@
                     </span>
 
                 </div>
-                <div class="col-sm-2 thumbnail-right">
+                <div class="col-xs-2 thumbnail-right">
                     <a class="btn btn-sm btn-primary pull-right" ng-click="toggleActive(goal.id)">
                         >>
                     </a>
@@ -35,7 +35,7 @@
                 <div class="row">
                     <div class="col-sm-12 text-right">
                         <a class="btn btn-sm btn-info" href="#/goal/{{goal.id}}">Details</a>
-                        <a class="btn btn-sm btn-default">Edit</a>
+                        <a class="btn btn-sm btn-default" ng-click="editGoalClick(goal)">Edit</a>
                     </div>
                 </div>
             </div>
@@ -50,10 +50,10 @@
         <div ng-repeat="goal in goals.active_goals">
             <div class="goal thumbnail"> 
                 <div class="row container-fluid"> 
-                    <div class="col-sm-9 col-sm-offset-1 thumbnail-left">
+                    <div class="col-xs-9 col-xs-offset-1 thumbnail-left">
                         <h3> {{goal.title}} </h3>
           
-                        <p>
+                        <p class="goal_description">
                             {{goal.description}}
                         </p>
 
@@ -62,7 +62,7 @@
                         </span>
 
                     </div>
-                    <div class="col-sm-2 thumbnail-right">
+                    <div class="col-xs-2 thumbnail-right">
                         <a class="btn btn-sm btn-primary pull-right" ng-click="toggleDone(goal.id)">
                             >>
                         </a>
@@ -76,7 +76,7 @@
                     </div>
                     <div class="col-sm-10 text-right">
                         <a class="btn btn-sm btn-info" href="#/goal/{{goal.id}}">Details</a>
-                        <a class="btn btn-sm btn-default">Edit</a>
+                        <a class="btn btn-sm btn-default" ng-click="editGoalClick(goal)">Edit</a>
                     </div>
                 </div>
             </div>
@@ -85,15 +85,15 @@
 
     <div class="col-sm-4">
     
-        <h1 class="text-center col-title">Done goals</h1>
+        <h1 class="text-center col-title">Achieved goals</h1>
 
-        <div ng-repeat="goal in goals.done_goals">
+        <div ng-repeat="goal in goals.achieved_goals">
             <div class="goal thumbnail"> 
                 <div class="row container-fluid"> 
-                    <div class="col-sm-9 col-sm-offset-1 thumbnail-left">
+                    <div class="col-sm-9 col-xs-offset-1 thumbnail-left">
                         <h3> {{goal.title}} </h3>
           
-                        <p>
+                        <p class="goal_description">
                             {{goal.description}}
                         </p>
 
@@ -103,14 +103,14 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-2 text-left">
+                    <div class="col-xs-2 text-left">
                         <a class="btn btn-sm btn-warning " ng-click="toggleDone(goal.id)">
                             <<
                         </a>
                     </div>
-                    <div class="col-sm-10 text-right">
+                    <div class="col-xs-10 text-right">
                         <a class="btn btn-sm btn-info" href="#/goal/{{goal.id}}">Details</a>
-                        <a class="btn btn-sm btn-default">Edit</a>
+                        <a class="btn btn-sm btn-default" ng-click="editGoalClick(goal)">Edit</a>
                     </div>
                 </div>
             </div>

@@ -4,7 +4,8 @@ angular.module('todoer', ['ui.router', 'templates', 'Devise'])
 .config([
 '$stateProvider',
 '$urlRouterProvider',
-function($stateProvider, $urlRouterProvider) {
+'$httpProvider',
+function($stateProvider, $urlRouterProvider,$httpProvider) {
 
   $stateProvider
     .state('home', {
@@ -65,6 +66,6 @@ function($stateProvider, $urlRouterProvider) {
             });
         }]
     })
-
-  $urlRouterProvider.otherwise('home');
+    $httpProvider.useApplyAsync(true);  
+    $urlRouterProvider.otherwise('home');
 }])

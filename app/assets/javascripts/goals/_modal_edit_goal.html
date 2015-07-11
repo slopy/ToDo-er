@@ -1,0 +1,28 @@
+<div id="modal_edit_goal">
+    <form>
+       
+        <div class="form-group">
+            <input type="text"
+                class="form-control"
+                placeholder="Title"
+                ng-model="goal.title"></input>
+        </div>
+
+        <div class="form-group">
+            <textarea type="text"
+                rows="4" cols="50"
+                class="form-control"
+                placeholder="description"
+                ng-model="goal.description"></textarea>
+        </div>
+
+        <br/>
+        <button type="submit" class="btn btn-success" ng-click="updateGoal(goal)">
+            <i class="fa fa-check"></i>&nbsp Update
+        </button>
+        <button class="btn btn-warning">
+            Close
+        </button>
+
+    </form>
+</div>

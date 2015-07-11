@@ -22,10 +22,16 @@
 
 .thumbnail-right{
   padding-right: 0px;
-  height: 100%;
+  
   .btn {
-    height: 100%;
+    position: relative;
+    top: 0;
   }
+}
+
+
+.goal_description{
+  min-height: 50px;
 }
 
 #add_goal_form{
@@ -42,16 +48,20 @@
 #my_profile_form_container {
   display: none;
   form {
-    position: absolute;
-    right: 0;
+    width:100%; 
+    margin:0 auto;
 
   }
 }
 
 #modal_delete_confirmation{
   width: 200px;
-  text-align: center;
+  text-align: right;
   button {
     margin: auto;
   }
+}
+
+.goal_preview{
+  min-height: 195px;
 }

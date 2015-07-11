@@ -8,7 +8,7 @@ angular.module('todoer')
 		goals: [],
         active_goals: [],
         waiting_goals: [],
-        done_goals: [],
+        achieved_goals: [],
 		};
 
 	obj.getAll = function() {
@@ -17,12 +17,12 @@ angular.module('todoer')
 
             var active_goals = []
             var waiting_goals = []
-            var done_goals = []
+            var achieved_goals = []
 
             angular.forEach(data ,function(goal){
 
                 if (goal.done == true) {
-                    done_goals.push(goal)
+                    achieved_goals.push(goal)
                 } else {
                 
                     if ((goal.active == true) && (goal.done != true)) {
@@ -35,7 +35,7 @@ angular.module('todoer')
                 
                 angular.copy(active_goals, obj.active_goals);
                 angular.copy(waiting_goals, obj.waiting_goals);
-                angular.copy(done_goals, obj.done_goals);
+                angular.copy(achieved_goals, obj.achieved_goals);
             }) // end of foreach
 
 

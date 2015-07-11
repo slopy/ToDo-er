@@ -10,11 +10,26 @@ class GoalsController < ApplicationController
         goal = Goal.new(goal_params)
         goal.user = current_user
         goal.save!
-        respond_with goal 
+        respond_with :nothing 
     end
 
     def show
         respond_with Goal.find(params[:id])
+    end
+
+    def update
+        goal = Goal.find(params[:id])
+        if goal.update(goal_params)
+            respond_with goal
+        else
+            respond_with :nothing
+        end
+    end
+
+    def destroy
+        goal = Goal.find(params[:id])
+        goal.destroy!
+        respond_with :nothing
     end
 
     def toggleActive
