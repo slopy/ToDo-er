@@ -9,8 +9,8 @@
 
         <h1 class="text-center col-title">Waiting goals</h1>
        
-        <div ng-repeat="goal in goals.waiting_goals">
-            <div class="goal thumbnail"> 
+        <div ng-repeat="goal in goals.waiting_goals" class="goal_listing">
+            <div class="goal thumbnail "> 
                 <div class="row container-fluid"> 
 
                 <div class="col-xs-9 col-xs-offset-1 thumbnail-left">
@@ -26,7 +26,7 @@
 
                 </div>
                 <div class="col-xs-2 thumbnail-right">
-                    <a class="btn btn-sm btn-primary pull-right" ng-click="toggleActive(goal.id)">
+                    <a class="btn btn-sm btn-primary pull-right" ng-click="toggleActive(goal)">
                         >>
                     </a>
                 </div>
@@ -47,7 +47,7 @@
 
         <h1 class="text-center col-title">Active goals</h1>
 
-        <div ng-repeat="goal in goals.active_goals">
+        <div ng-repeat="goal in goals.active_goals" class="goal_listing">
             <div class="goal thumbnail"> 
                 <div class="row container-fluid"> 
                     <div class="col-xs-9 col-xs-offset-1 thumbnail-left">
@@ -63,14 +63,14 @@
 
                     </div>
                     <div class="col-xs-2 thumbnail-right">
-                        <a class="btn btn-sm btn-primary pull-right" ng-click="toggleDone(goal.id)">
+                        <a class="btn btn-sm btn-primary pull-right" ng-click="toggleDone(goal)">
                             >>
                         </a>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-2 text-left">
-                        <a class="btn btn-sm btn-warning pull-left" ng-click="toggleActive(goal.id)">
+                        <a class="btn btn-sm btn-warning pull-left" ng-click="toggleActive(goal)">
                             <<
                         </a>
                     </div>
@@ -87,7 +87,7 @@
     
         <h1 class="text-center col-title">Achieved goals</h1>
 
-        <div ng-repeat="goal in goals.achieved_goals">
+        <div ng-repeat="goal in goals.achieved_goals" class="goal_listing">
             <div class="goal thumbnail"> 
                 <div class="row container-fluid"> 
                     <div class="col-sm-9 col-xs-offset-1 thumbnail-left">
@@ -104,7 +104,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-2 text-left">
-                        <a class="btn btn-sm btn-warning " ng-click="toggleDone(goal.id)">
+                        <a class="btn btn-sm btn-warning " ng-click="toggleDone(goal)">
                             <<
                         </a>
                     </div>

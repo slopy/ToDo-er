@@ -1,6 +1,5 @@
 // angular.module('todoer', [])
-
-angular.module('todoer', ['ui.router', 'templates', 'Devise'])
+angular.module('todoer', ['ui.router', 'templates', 'Devise','todoerAnimations',])
 .config([
 '$stateProvider',
 '$urlRouterProvider',

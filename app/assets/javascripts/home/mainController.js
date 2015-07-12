@@ -7,11 +7,9 @@ angular.module('todoer')
 '$http',
 'goals',
 function($scope,$templateCache,$compile,$http,goals){
-
-	goals.getAll()
-
-    $scope.goals = goals
     
+    goals.getAll()
+      
     $scope.addGoal = function(){
         if(!$scope.title || $scope.title === '') { return; }
         if(!$scope.description || $scope.description === '') { return; }
@@ -24,45 +22,38 @@ function($scope,$templateCache,$compile,$http,goals){
         $scope.title = ""
         $scope.description = ""
 
-        goals.getAll()
-
-        $scope.goals = goals
-
         $.fancybox.close()
 
     }; // end of addGoal
 
-    $scope.toggleActive = function(id) {
+    $scope.toggleActive = function(goal) {
       
-        goals.toggleActiveState(id)
-        goals.getAll()
+        goals.toggleActiveState(goal)
 
-        $scope.goals = goals
+    } // end of toggleActive
+
+    $scope.toggleDone = function(goal) {
+      
+        goals.toggleDoneState(goal)
         
     } // end of toggleActive
 
-    $scope.toggleDone = function(id) {
-      
-        goals.toggleDoneState(id)
-        goals.getAll()
+    $scope.updateGoal = function(){
+        goals.updateGoal({
+          id: $scope.goal.id,
+          title: $scope.goal.title,
+          description: $scope.goal.description
+          })
 
+        $scope.goal = goals.goal
         $scope.goals = goals
-        
-    } // end of toggleActive
-
-    $scope.updateGoal = function(goal){
-        return $http.put("/goals/" + goal.id + ".json",goal).success(function(data){
-            angular.copy(data,$scope.goal)
-            goals.getAll()
-            $scope.goals = goals
-        })
     } // edn of updateGoal
 
     $scope.editGoalClick = function(goal){
-        $scope.goal = goal
         var content = $templateCache.get('goals/_modal_edit_goal.html')
         var template = $compile(content)($scope)
-
+        
+        $scope.goal = angular.copy(goal)
 
         $.fancybox.open([{ 
           content : template,
@@ -75,7 +66,7 @@ function($scope,$templateCache,$compile,$http,goals){
           },
         }]); // end of fancybox
 
-        $('#modal_edit_goal button').on('click', function(e) {
+        $('#modal_edit_goal .btn-warning').on('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
             $(this).parent().hide();
@@ -98,6 +89,9 @@ function($scope,$templateCache,$compile,$http,goals){
         }]); // end of fancybox 
       })  // end of click
     }); // end of $on('$viewContentLoaded'
+
+    $scope.goal = goals.goal
+    $scope.goals = goals
 
 } // end of controller function
 
