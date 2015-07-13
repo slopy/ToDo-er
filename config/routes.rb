@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
+
+
   devise_for :users
+  put 'users', to: 'users#update'
+  delete 'users', to: 'users#delete'
+
   get 'home/home'
 
   # The priority is based upon order of creation: first created -> highest priority.

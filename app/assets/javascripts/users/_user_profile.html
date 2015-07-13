@@ -1,5 +1,112 @@
-profile <br/>
+<div class="page-header">
+    <h3>My profile</h3>
+</div>
 
-<p>
-    user: {{user}}
-</p>
+<div class="row">
+    <div class="col-sm-3">
+        <div class="row">
+            <div class="col-sm-5">
+                <a class="thumbnail avatar text-center">
+                    <i class="fa fa-user"></i>
+                </a>
+            </div>
+            <div class="col-sm-7">
+                <p>
+                    {{user.email}}
+                </p>
+                <p>
+                    <small> created: {{user.created_at | date : 'd-MM-yyyy' : 'CEST' }} </small>
+                </p>
+                <p>
+                    <button id="edit_user" class="btn btn-info">edit</button>
+                </p>  
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="my_profile_form_container">
+                    <form ng-submit="updateUser()" >
+                        <h4>Edit profile</h4>
+                        <small>Your current password is needed.</small>
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Email" ng-model="user.email">
+                        </div>
+                        <div class="input-group">
+                            <input type="password" class="form-control" placeholder="Current password" ng-model="user.current_password">
+                        </div>
+                        <div class="input-group">
+                            <input type="password" class="form-control" placeholder="New password" ng-model="user.password">
+                        </div>
+
+                        <div class="input-group">
+                            <input type="password" class="form-control" placeholder="Confirm new password" ng-model="user.password_confirmation">
+                        </div>
+                        <br/>
+                        <button type="submit" class="btn btn-success" value="Update">
+                            <i class="fa fa-check"></i>&nbsp Update
+                        </button>
+                        <a ng-click="deleteUserClick()" class="btn btn-danger">
+                            <i class="fa fa-trash-o"></i>&nbsp Delete
+                        </a>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-sm-9">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Active goals
+                    </div>
+                    <ul class="list-group">
+                      <a href="" class="list-group-item" ng-repeat="goal in goals.active_goals"  ng-click="previewGoal(goal)" >
+                        {{goal.title}}
+                      </a>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Achieved goals
+                    </div>
+                    <ul class="list-group">
+                      <a href="" class="list-group-item" ng-repeat="goal in goals.achieved_goals" ng-click="previewGoal(goal)">
+                        {{goal.title}}
+                      </a>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="thumbnail goal_preview">
+                <div class="caption">
+                    <h3 class="text-center">
+                        <strong>{{goal.title}}</strong>
+                    </h3>
+      
+                    <p class="goal_description">
+                        {{goal.description}}
+                    </p>
+                    <br/>
+                    <div ng-show="goal.description" class="text-center">
+                        <a class="btn btn-sm btn-info" href="#/goal/{{goal.id}}">Details</a>
+                        <a class="btn btn-sm btn-default" ng-click="editGoalClick(goal)">Edit</a>
+                        <a class="btn btn-sm btn-danger" ng-click="deleteGoalClick()">
+                            <i class="fa fa-trash-o"></i>&nbsp Delete
+                        </a>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

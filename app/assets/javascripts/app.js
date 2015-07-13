@@ -1,5 +1,4 @@
 // angular.module('todoer', [])
-
 angular.module('todoer', ['ui.router', 'templates', 'Devise','angular-loading-bar','ngAnimate'])
 .config([
 '$stateProvider',
@@ -67,9 +66,8 @@ function($stateProvider, $urlRouterProvider,cfpLoadingBarProvider) {
         }]
     })
 
-  $urlRouterProvider.otherwise('home');
-
-  cfpLoadingBarProvider.includeSpinner = true;
-  
+    cfpLoadingBarProvider.includeSpinner = true;
+    $httpProvider.useApplyAsync(true);  
+    $urlRouterProvider.otherwise('home');
 
 }])

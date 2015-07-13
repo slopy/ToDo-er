@@ -1,0 +1,80 @@
+
+
+/////////////////
+
+.goal_listing.ng-enter, 
+.goal_listing.ng-leave
+{ 
+  -webkit-transition:all linear 0.3s;
+  -moz-transition:all linear 0.3s;
+  -ms-transition:all linear 0.3s;
+  -o-transition:all linear 0.3s;
+  transition:all linear 0.3s;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    text-overflow: clip;
+    white-space:nowrap;
+} 
+ 
+.goal_listing.ng-leave.goal_listing.ng-leave-active,
+.goal_listing.ng-enter {
+    opacity: 0;
+    width: 0px;
+    height: 0px;
+}
+ 
+.goal_listing.ng-enter.goal_listing.ng-enter-active, 
+.goal_listing.ng-leave {
+    opacity: 1;
+    width: 500px;
+    height: 150px;
+}
+
+
+
+
+
+
+
+
+//////////////////////
+.view-animate-container {
+  position:relative;
+  height:85vh !important;
+  background:white;
+  height:100%;
+  overflow: auto;
+  overflow-x: hidden;
+
+}
+
+.view-animate {
+  padding:10px;
+}
+
+.view-animate.ng-enter, .view-animate.ng-leave {
+  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
+
+  display:block;
+  width:100%;
+  border-left:1px solid black;
+
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  padding:10px;
+}
+
+.view-animate.ng-enter {
+  left:100%;
+}
+.view-animate.ng-enter.ng-enter-active {
+  left:0;
+}
+.view-animate.ng-leave.ng-leave-active {
+  left:-100%;
+}
