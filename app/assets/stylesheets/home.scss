@@ -40,8 +40,10 @@ body{
   min-height: 50px;
 }
 
-#add_goal_form{
-  display: none
+#add_goal_form, #modal_edit_goal{
+  .modal_errors{
+    color: red;
+  }
 }
 
 

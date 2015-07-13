@@ -14,15 +14,17 @@ class GoalsController < ApplicationController
             achieved_goals: done_goals
         }
       
-
         respond_with goals
     end
 
     def create
-        goal = Goal.new(goal_params)
+        params[:goal].empty? ? goal=Goal.new : goal = Goal.new(goal_params)
         goal.user = current_user
-        goal.save!
-        respond_with goal
+        if goal.save
+            respond_with goal
+        else
+            render :json => {:errors => goal.errors, :goal => goal }, status: 422
+        end
     end
 
     def show
@@ -34,13 +36,12 @@ class GoalsController < ApplicationController
         goal_check = Goal.new(goal_params)
         goal_check.user = current_user
 
-        if  goal_check.valid?
+        if goal_check.valid?
             goal.update_columns(goal_params)
-            respond_with goal do |format|
-              format.json { render json: goal.to_json, status: :ok }  
-            end
+            render :json => {:goal => goal }, status: 200
         else
             goal.update(goal_params)
+            render :json => {:errors => goal.errors, :goal => goal }, status: 422
         end # to avoid updated_at change
 
     end

@@ -6,11 +6,12 @@ angular.module('todoer')
 
 	var obj = {
         goal: {},
-		goals: [],
+        errors: {},
+
+        goals: [],
         waiting_goals: [],
         active_goals: [],
-        achieved_goals: [],
-        errors: []
+        achieved_goals: []
 		};
 
     obj.getAll = function() {
@@ -22,12 +23,22 @@ angular.module('todoer')
         }); // end of success
     }; // end of getAll
 
-    obj.create = function(goal) {
-        return $http.post('/goals.json', goal).success(function(data){
+    obj.create = function(scope,goal) {
+        return $http.post('/goals.json', goal).success(function(data,status){
             obj.goals.splice(0, 0,data)
             obj.waiting_goals.splice(0, 0,data)
+            scope.errors = {}
+            angular.copy({}, obj.errors)
+            scope.title = ""
+            scope.description = ""
+
+            $.fancybox.close()
+        }).error(function(data){
+            angular.copy(data.errors, obj.errors)
+            angular.copy(data.goal, obj.goal)
+
         });
-    };
+    }
 
     obj.show = function(id) {
         return $http.get('/goals/' + id + '.json').success(function(data){
@@ -60,27 +71,28 @@ angular.module('todoer')
         })
     }
 
-    obj.updateGoal = function(goal){
+    obj.updateGoal = function(scope,goal){
         return $http.put('/goals/' + goal.id + '.json', data = {title: goal.title, description: goal.description})
         .success(function(data){
-            $.fancybox.close();
-    
-            if (data.done == true) {
-            obj.achieved_goals[findWithAttr(obj.achieved_goals,"id",data.id)] = data
+            
+            if (data.goal.done == true) {
+            obj.achieved_goals[findWithAttr(obj.achieved_goals,"id",data.goal.id)] = data.goal
             }
             else {
-                if (data.active == true) {
-                    obj.active_goals[findWithAttr(obj.active_goals,"id",data.id)] = data
+                if (data.goal.active == true) {
+                    obj.active_goals[findWithAttr(obj.active_goals,"id",data.goal.id)] = data.goal
                 } 
                 else {
-                    obj.waiting_goals[findWithAttr(obj.waiting_goals,"id",data.id)] = data
+                    obj.waiting_goals[findWithAttr(obj.waiting_goals,"id",data.goal.id)] = data.goal
                 }
             } 
+            scope.errors = {}
+            $.fancybox.close();
 
         }).error(function(data){
-            $http.get('/goals/' + goal.id + '.json').success(function(data){
-                angular.copy(data, obj.goal)
-            })  
+            
+            scope.errors = data.errors
+            angular.copy(data.goal, obj.goal)
         })
     } // edn of updateGoa
 
