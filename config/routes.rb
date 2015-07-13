@@ -12,8 +12,8 @@ Rails.application.routes.draw do
 
   resources :goals 
 
-  match 'active_change/:id', to: 'goals#toggleActive', via: :get
-  match 'done_change/:id', to: 'goals#toggleDone', via: :get
+  get 'active_change/:id', to: 'goals#toggleActive'
+  get 'done_change/:id', to: 'goals#toggleDone'
 
   
   # Example of regular route:

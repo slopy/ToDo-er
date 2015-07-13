@@ -5,8 +5,13 @@ angular.module('todoer')
 	function($http){
 
 	var obj = {
+<<<<<<< Updated upstream
+=======
+        goal: [],
+>>>>>>> Stashed changes
 		goals: [],
         active_goals: [],
+<<<<<<< Updated upstream
         waiting_goals: [],
         done_goals: [],
 		};
@@ -47,6 +52,30 @@ angular.module('todoer')
 			obj.goals.push(data);
 		});
 	};
+=======
+        achieved_goals: [],
+        errors: {}
+		};
+
+    obj.getAll = function() {
+        return $http.get('/goals.json').success(function(data){
+            angular.copy(data.goals, obj.goals);
+            angular.copy(data.active_goals, obj.active_goals);
+            angular.copy(data.waiting_goals, obj.waiting_goals);
+            angular.copy(data.achieved_goals, obj.achieved_goals);
+        }); // end of success
+    }; // end of getAll
+
+    obj.create = function(goal) {
+        return $http.post('/goals.json', goal).success(function(data,status){
+            obj.goals.splice(0, 0,data)
+            obj.waiting_goals.splice(0, 0,data)
+            $.fancybox.close()
+        }).error(function(data){
+            angular.copy(data.errors, obj.errors)
+        });
+    }
+>>>>>>> Stashed changes
 
     obj.show = function(id) {
         return $http.get('/goals/' + id + '.json').success(function(data){

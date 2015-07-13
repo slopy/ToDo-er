@@ -66,5 +66,26 @@ function($stateProvider, $urlRouterProvider) {
         }]
     })
 
+<<<<<<< Updated upstream
   $urlRouterProvider.otherwise('home');
+=======
+    cfpLoadingBarProvider.includeSpinner = true;
+    $httpProvider.useApplyAsync(true);  
+    $urlRouterProvider.otherwise('login');
+
+>>>>>>> Stashed changes
 }])
+
+// .run(function($rootScope, $location, $state) {
+
+//     $rootScope.$on( '$stateChangeStart', function(e, toState  , toParams
+//                                                    , fromState, fromParams) {
+//         if(Auth.isAuthenticated()){
+//            return; // no need to redirect 
+//         }
+//         else {
+//             e.preventDefault(); // stop current execution
+//             $state.go('login'); // go to login
+//         }
+//     });
+// });

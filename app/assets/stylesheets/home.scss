@@ -28,6 +28,61 @@
   }
 }
 
+<<<<<<< Updated upstream
 #add-goal-form{
   display: none
 }
+=======
+
+.goal_description{
+  min-height: 50px;
+}
+
+#loading-bar-spinner {
+    display: block;
+    position: fixed;
+    left: calc(50% - 20px);
+    top: 15px;
+/*    width: 1000px;
+    height: 1000px;
+*/    z-index: 1049;
+}
+
+#loading-bar-spinner .spinner-icon {
+    width: 20px;
+    height: 20px;
+    border: solid 2px transparent;
+    border-top-color: #428BC7;
+    border-left-color: #428BC7;
+    border-radius: 2px;
+}
+
+
+// my profile 
+.avatar{
+  font-size: 60px;
+}
+
+
+#my_profile_form_container {
+  display: none;
+  form {
+    width:100%; 
+    margin:0 auto;
+
+  }
+}
+
+#modal_delete_confirmation{
+  width: 200px;
+  text-align: right;
+  button {
+    margin: auto;
+  }
+}
+
+.goal_preview{
+  min-height: 195px;
+}
+
+>>>>>>> Stashed changes
