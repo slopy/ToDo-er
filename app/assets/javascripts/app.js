@@ -3,8 +3,9 @@ angular.module('todoer', ['ui.router', 'templates', 'Devise','angular-loading-ba
 .config([
 '$stateProvider',
 '$urlRouterProvider',
+'$httpProvider',
 'cfpLoadingBarProvider',
-function($stateProvider, $urlRouterProvider,cfpLoadingBarProvider) {
+function($stateProvider, $urlRouterProvider,$httpProvider,cfpLoadingBarProvider) {
 
   $stateProvider
     .state('home', {

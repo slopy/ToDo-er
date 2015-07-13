@@ -48,20 +48,20 @@ body{
 #loading-bar-spinner {
     display: block;
     position: fixed;
-    left: calc(50% - 70px);
-    top: calc(50% - 70px);
-    width: 1000px;
+    left: calc(50% - 20px);
+    top: 15px;
+/*    width: 1000px;
     height: 1000px;
-    z-index: 1049;
+*/    z-index: 1049;
 }
 
 #loading-bar-spinner .spinner-icon {
-    width: 70px;
-    height: 70px;
-    border: solid 8px transparent;
+    width: 20px;
+    height: 20px;
+    border: solid 2px transparent;
     border-top-color: #428BC7;
     border-left-color: #428BC7;
-    border-radius: 5px;
+    border-radius: 2px;
 }
 
 
