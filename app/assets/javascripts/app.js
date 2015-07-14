@@ -83,7 +83,7 @@ function($stateProvider, $urlRouterProvider,$httpProvider,cfpLoadingBarProvider,
 
 //DEVISE
             // Customize login
-        AuthProvider.loginMethod('GET');
+        AuthProvider.loginMethod('POST');
         AuthProvider.loginPath('/api/' + myConstantsProvider._api + 'users/sign_in.json');
 
         // Customize logout
@@ -91,8 +91,8 @@ function($stateProvider, $urlRouterProvider,$httpProvider,cfpLoadingBarProvider,
         AuthProvider.logoutPath('/api/' + myConstantsProvider._api + 'users/sign_out.json');
 
         // Customize register
-        AuthProvider.registerMethod('PATCH');
-        AuthProvider.registerPath('/api/' + myConstantsProvider._api + 'users/sign_up.json');
+        AuthProvider.registerMethod('POST');
+        AuthProvider.registerPath('/api/' + myConstantsProvider._api + 'users.json');
 
         // Customize the resource name data use namespaced under
         // Pass false to disable the namespace altogether.
@@ -114,7 +114,8 @@ function($stateProvider, $urlRouterProvider,$httpProvider,cfpLoadingBarProvider,
     $rootScope.$on("$stateChangeStart", function(e, toState, toParams, fromState, fromParams) {
 
         Auth.currentUser().then(function(user) {
-            if (toState.module === 'private'){    
+            if (toState.module === 'private'){   
+             
             } else if  (toState.module === 'public'){
                 // e.preventDefault()
                 e.preventDefault()
@@ -126,7 +127,7 @@ function($stateProvider, $urlRouterProvider,$httpProvider,cfpLoadingBarProvider,
                 e.preventDefault()
                 $state.go("login")
             } else if  (toState.module === 'public'){
-    
+
             }
         }); 
     });

@@ -8,9 +8,9 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+  end
 
   # GET /resource/edit
   # def edit
@@ -40,7 +40,7 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
-  #   devise_parameter_sanitizer.for(:sign_up) << :attribute
+  #   devise_parameter_sanitizer.for(:user) << :attribute
   # end
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -57,4 +57,8 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  def sign_up_params
+    params.require(:user).permit(:email, :password, :password_confirmation)
+  end
 end

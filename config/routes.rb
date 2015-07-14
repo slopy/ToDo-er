@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root to: 'application#angular'
+  devise_for :users
 
     namespace :api do
         namespace :v1 do
