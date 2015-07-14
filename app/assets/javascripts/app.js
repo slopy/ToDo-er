@@ -131,3 +131,4 @@ function($stateProvider, $urlRouterProvider,$httpProvider,cfpLoadingBarProvider,
         }); 
     });
 });
+

@@ -25,6 +25,7 @@ angular.module('todoer')
 
     obj.create = function(scope,goal) {
         return $http.post('/api/v1/goals.json', goal).success(function(data,status){
+
             obj.goals.splice(0, 0,data)
             obj.waiting_goals.splice(0, 0,data)
             scope.errors = {}
@@ -72,6 +73,7 @@ angular.module('todoer')
     }
 
     obj.updateGoal = function(scope,goal){
+
         return $http.put('/api/v1/goals/' + goal.id + '.json', data = {title: goal.title, description: goal.description})
         .success(function(data){
             
@@ -95,7 +97,6 @@ angular.module('todoer')
             angular.copy(data.goal, obj.goal)
         })
     } // edn of updateGoa
-
 
     function findWithAttr(array, attr, value) {
     for(var i = 0; i < array.length; i += 1) {

@@ -68,6 +68,7 @@ function($scope,$templateCache,$compile,$http,goals){
     } // end of editGoalClick
 
      $scope.addNewGoalClick = function() {
+
         goals.errors = {}
         goals.goal = {}
         $scope.errors = goals.errors
