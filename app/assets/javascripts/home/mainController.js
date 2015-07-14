@@ -9,52 +9,45 @@ angular.module('todoer')
 function($scope,$templateCache,$compile,$http,goals){
     
     goals.getAll()
+    $scope.goal = goals.goal
+    $scope.goals = goals
+    $scope.errors = goals.errors
       
     $scope.addGoal = function(){
-        if(!$scope.title || $scope.title === '') { return; }
-        if(!$scope.description || $scope.description === '') { return; }
 
-        goals.create({
+        goals.create($scope,{
             title: $scope.title,
             description: $scope.description,
         });
 
-        $scope.title = ""
-        $scope.description = ""
-
-        $.fancybox.close()
-
     }; // end of addGoal
 
-    $scope.toggleActive = function(goal) {
-      
+    $scope.toggleActive = function(goal) { 
         goals.toggleActiveState(goal)
 
     } // end of toggleActive
 
     $scope.toggleDone = function(goal) {
-      
         goals.toggleDoneState(goal)
         
     } // end of toggleActive
 
     $scope.updateGoal = function(){
-        goals.updateGoal({
+        goals.updateGoal($scope,{
           id: $scope.goal.id,
           title: $scope.goal.title,
           description: $scope.goal.description
           })
 
-        $scope.goal = goals.goal
-        $scope.goals = goals
     } // edn of updateGoal
 
     $scope.editGoalClick = function(goal){
+        $scope.errors = {}
+        $scope.goal = angular.copy(goal)
+
         var content = $templateCache.get('goals/_modal_edit_goal.html')
         var template = $compile(content)($scope)
         
-        $scope.goal = angular.copy(goal)
-
         $.fancybox.open([{ 
           content : template,
           title: "<h3 class='text-center'> Edit goal </h3>",
@@ -75,11 +68,15 @@ function($scope,$templateCache,$compile,$http,goals){
 
     } // end of editGoalClick
 
-    $scope.$on('$viewContentLoaded', function(event) {
-      $("a.fancybox").click(function() {
+     $scope.addNewGoalClick = function() {
+        // $scope.errors = {}
+
+        var content = $templateCache.get('goals/_modal_add_new_goal.html')
+        var template = $compile(content)($scope)
+
         $.fancybox.open([{ 
-          href : '#add_goal_form',
-          title: "<h3 class='text-center'>Add mew Goal!</h3><br/>",
+          content : template,
+          title: "<h3 class='text-center'>Add new Goal!</h3><br/>",
           helpers : { 
             title : {
               type: 'inside',
@@ -87,11 +84,8 @@ function($scope,$templateCache,$compile,$http,goals){
             }
           },
         }]); // end of fancybox 
-      })  // end of click
-    }); // end of $on('$viewContentLoaded'
 
-    $scope.goal = goals.goal
-    $scope.goals = goals
+    }; // end of addNewGoalClick
 
 } // end of controller function
 

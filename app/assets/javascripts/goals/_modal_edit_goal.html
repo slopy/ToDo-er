@@ -1,14 +1,17 @@
 <div id="modal_edit_goal">
-
+    
+    
     <form ng-submit="updateGoal()">
        
+       <span class="modal_errors">{{errors.title[0]}}</span>
         <div class="form-group">
             <input type="text"
                 class="form-control"
                 placeholder="Title"
                 ng-model="goal.title"></input>
         </div>
-
+        
+        <span class="modal_errors">{{errors.description[0]}}</span>
         <div class="form-group">
             <textarea type="text"
                 rows="4" cols="50"

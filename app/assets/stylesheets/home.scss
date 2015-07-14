@@ -8,6 +8,14 @@ body{
 
 .main {
 }
+
+// login and registration
+
+.login_errors{
+    color: red
+}
+
+
 .col-title{
   padding-bottom: 10px;  
 }
@@ -40,8 +48,10 @@ body{
   min-height: 50px;
 }
 
-#add_goal_form{
-  display: none
+#add_goal_form, #modal_edit_goal{
+  .modal_errors{
+    color: red;
+  }
 }
 
 

@@ -1,7 +1,7 @@
 
 <div class="page-header">
     <h3></h3>
-    <a href="#" class="fancybox btn btn-primary">Add new goal</a>
+    <a class="fancybox btn btn-primary" ng-click="addNewGoalClick()">Add new goal</a>
 </div>
 
 <div class="row">
@@ -117,23 +117,3 @@
         </div>
     </div>
 </div>
-
-<form ng-submit="addGoal()" id="add_goal_form">
-
-    <div class="form-group">
-        <input type="text"
-            class="form-control"
-            placeholder="Title"
-            ng-model="title"></input>
-    </div>
-
-    <div class="form-group">
-        <textarea type="text"
-            rows="4" cols="50"
-            class="form-control"
-            placeholder="description"
-            ng-model="description"></textarea>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Goal</button>
-</form>

@@ -54,14 +54,15 @@ gem 'pry'
 
 
 group :test, :development do
-  gem "rspec-rails", "~> 2.0"
-  gem "factory_girl_rails", "~> 4.0"
+  gem "rspec-rails"
+  gem "factory_girl_rails"
+  gem 'shoulda-matchers'
+  gem 'guard-rspec'
+  gem 'faker'
   gem "capybara"
   gem "database_cleaner"
   gem 'sqlite3'
-end
 
-group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   # Access an IRB console on exception pages or by using <%= console %> in views
@@ -69,6 +70,8 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+
 end
 
 group :production do

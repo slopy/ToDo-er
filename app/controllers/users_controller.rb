@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+    respond_to :json
+
+    before_action :authenticate_user!, except: [:loggedin]
 
   def update
     user = current_user
@@ -15,6 +18,13 @@ class UsersController < ApplicationController
     current_user.destroy!
   end
 
+  def loggedin
+    if signed_in?
+      render :json => { user: current_user }, status: 200
+    else
+      render :json => {}, status: 422
+    end
+  end
 
   protected
 
