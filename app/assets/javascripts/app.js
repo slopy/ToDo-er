@@ -1,10 +1,27 @@
 angular.module('todoer', ['ui.router', 'templates', 'Devise','angular-loading-bar','ngAnimate'])
-.config([
+.provider("myConstants", function() {
+    console.log("myProvider start")
+    this._api = 'v1/';
+
+    this.$get = function () {
+        var that = this;
+        return {
+
+            sayVersion: function () {
+                return 'API version: ' + that._api;
+            }
+        };
+    }   
+
+}).config([
 '$stateProvider',
 '$urlRouterProvider',
 '$httpProvider',
 'cfpLoadingBarProvider',
-function($stateProvider, $urlRouterProvider,$httpProvider,cfpLoadingBarProvider, Auth) {
+'AuthProvider',
+'myConstantsProvider',
+'AuthInterceptProvider',
+function($stateProvider, $urlRouterProvider,$httpProvider,cfpLoadingBarProvider, AuthProvider,myConstantsProvider,AuthInterceptProvider,Auth) {
 
   $stateProvider
     .state('home', {
@@ -64,6 +81,34 @@ function($stateProvider, $urlRouterProvider,$httpProvider,cfpLoadingBarProvider,
     $httpProvider.useApplyAsync(true);  
     $urlRouterProvider.otherwise('login');
 
+//DEVISE
+            // Customize login
+        AuthProvider.loginMethod('GET');
+        AuthProvider.loginPath('/api/' + myConstantsProvider._api + 'users/sign_in.json');
+
+        // Customize logout
+        AuthProvider.logoutMethod('DELETE');
+        AuthProvider.logoutPath('/api/' + myConstantsProvider._api + 'users/sign_out.json');
+
+        // Customize register
+        AuthProvider.registerMethod('PATCH');
+        AuthProvider.registerPath('/api/' + myConstantsProvider._api + 'users/sign_up.json');
+
+        // Customize the resource name data use namespaced under
+        // Pass false to disable the namespace altogether.
+        // AuthProvider.resourceName(false);
+
+        // Customize user parsing
+        // NOTE: **MUST** return a truth-y expression
+        // AuthProvider.parse(function(response) {
+        //     return response.data.user;
+        // });
+
+        // Intercept 401 Unauthorized everywhere
+        // Enables `devise:unauthorized` interceptor
+        // AuthInterceptProvider.interceptAuth(true);
+//
+
 }]).run(function($rootScope, $http, $state, Auth) {
 
     $rootScope.$on("$stateChangeStart", function(e, toState, toParams, fromState, fromParams) {
@@ -86,4 +131,3 @@ function($stateProvider, $urlRouterProvider,$httpProvider,cfpLoadingBarProvider,
         }); 
     });
 });
-

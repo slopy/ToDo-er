@@ -10,7 +10,6 @@ function($scope, $state, Auth){
         Auth.login($scope.user).then(function(){
             $state.go('home');
         }, function(data){
-            console.log(JSON.stringify(data.data.error))
             $scope.error = data.data.error
         });
     };

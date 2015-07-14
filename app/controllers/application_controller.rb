@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     after_filter :set_csrf_cookie_for_ng
 
     def angular
-        render 'layouts/application'
+        render 'layouts/api/v1/application'
     end
 
     private

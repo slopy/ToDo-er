@@ -7,7 +7,6 @@ angular.module('todoer')
 '$http',
 'goals',
 function($scope,$templateCache,$compile,$http,goals){
-    
     goals.getAll()
     $scope.goal = goals.goal
     $scope.goals = goals
@@ -69,7 +68,10 @@ function($scope,$templateCache,$compile,$http,goals){
     } // end of editGoalClick
 
      $scope.addNewGoalClick = function() {
-        // $scope.errors = {}
+        goals.errors = {}
+        goals.goal = {}
+        $scope.errors = goals.errors
+        $scope.goal = goals.goal
 
         var content = $templateCache.get('goals/_modal_add_new_goal.html')
         var template = $compile(content)($scope)

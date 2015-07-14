@@ -15,7 +15,7 @@ angular.module('todoer')
 		};
 
     obj.getAll = function() {
-        return $http.get('/goals.json').success(function(data){
+        return $http.get('/api/v1/goals.json').success(function(data){
             angular.copy(data.goals, obj.goals);
             angular.copy(data.active_goals, obj.active_goals);
             angular.copy(data.waiting_goals, obj.waiting_goals);
@@ -24,7 +24,7 @@ angular.module('todoer')
     }; // end of getAll
 
     obj.create = function(scope,goal) {
-        return $http.post('/goals.json', goal).success(function(data,status){
+        return $http.post('/api/v1/goals.json', goal).success(function(data,status){
             obj.goals.splice(0, 0,data)
             obj.waiting_goals.splice(0, 0,data)
             scope.errors = {}
@@ -41,13 +41,13 @@ angular.module('todoer')
     }
 
     obj.show = function(id) {
-        return $http.get('/goals/' + id + '.json').success(function(data){
+        return $http.get('/api/v1/goals/' + id + '.json').success(function(data){
             obj.goal = data;
         })
     }
     
     obj.toggleActiveState =function(goal) {
-        return $http.get('/active_change/' + goal.id + '.json').success(function(data){
+        return $http.get('/api/v1/active_change/' + goal.id + '.json').success(function(data){
 
             if (data.active == true) {
                 obj.waiting_goals.splice(obj.waiting_goals.indexOf(goal), 1); 
@@ -60,7 +60,7 @@ angular.module('todoer')
     }
 
     obj.toggleDoneState =function(goal) {
-        return $http.get('/done_change/' + goal.id + '.json').success(function(data){
+        return $http.get('/api/v1/done_change/' + goal.id + '.json').success(function(data){
              if (data.done == true) {
                 obj.active_goals.splice(obj.active_goals.indexOf(goal), 1); 
                 obj.achieved_goals.splice(0, 0,data)
@@ -72,7 +72,7 @@ angular.module('todoer')
     }
 
     obj.updateGoal = function(scope,goal){
-        return $http.put('/goals/' + goal.id + '.json', data = {title: goal.title, description: goal.description})
+        return $http.put('/api/v1/goals/' + goal.id + '.json', data = {title: goal.title, description: goal.description})
         .success(function(data){
             
             if (data.goal.done == true) {
