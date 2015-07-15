@@ -28,7 +28,8 @@ class Api::V1::GoalsController < ApiController
     end
 
     def show
-        respond_with Goal.find(params[:id])
+        goal = Goal.includes(:user).find(params[:id]).to_json(include: :user)
+        render :json => goal, status: 200
     end
 
     def update

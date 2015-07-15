@@ -1,10 +1,85 @@
-    <div class="panel panel-default">
-        <div class="panel panel-heading">
-            <h3>{{goal.title}}</h3>
-        </div>
-        <div class="panel panel-body">
-            {{goal.description}} <br/>
-            category || active || done || done_percent <br/>
-            EDIT, DESTROY
+
+<div class="page-header text-center">
+    <h3 ng-if="goal.active == false">Goals in waitin list</h3>
+    <h3 ng-if="goal.active == true && goal.done == false">Goals in active list</h3>
+    <h3 ng-if="goal.done == true">Goals in achieved list</h3>
+</div>
+
+<div class="row">
+    <div class="col-sm-3 prev_goal">
+        <div class="panel panel-default">
+            <div class="panel panel-body">
+                <h3>{{goal.title}}</h3>
+                <p class="goal_description">
+                        {{goal.description}}
+                </p>
+            </div>
         </div>
     </div>
+
+    <div class="col-sm-6 this_goal">
+        <div class="panel panel-default">
+
+            <div class="panel panel-body">
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        <h3>{{goal.title}}</h3>
+                        <p class="goal_description">
+                                {{goal.description}}
+                        </p>
+                    </div>
+                    <div class="col-sm-7">
+
+                    <p>
+                    This goal is
+                    <span class="waiting" ng-if="goal.active == false">Waiting</span>
+                    <span class="active" ng-if="goal.active == true && goal.done == false">Active</span>
+                    <span class="achieved" ng-if="goal.done == true">Achieved</span>
+                    </p>
+
+                    And it is done in:
+                    <div ng-if="goal.done_percent > -1" class="progress">
+                      <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{goal.done_percent}}" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                        {{goal.done_percent}}%
+                      </div>   
+                    </div>
+
+                    <h4> 
+                        <span class="label label-primary">
+                        Name of category
+                        </span>
+                    </h4>
+                     
+                    </div>
+                    <div class="col-sm-5 goal_timestamp">
+                            <b>{{goal.user.email}}</b><br/>
+                            {{goal.created_at | date: 'fullDate'}}<br/>
+                            <!-- updated at {{goal.updated_at | date: 'fullDate'}}  -->
+                    </div>
+                    <div class="col-sm-5 col-sm-offset-7 buttons_container">
+                        <a class="btn btn-default" ng-click="editGoalClick(goal)">Edit</a>
+                        <a ng-click="deleteUserClick()" class="btn btn-danger">
+                            <i class="fa fa-trash-o"></i>&nbsp Delete
+                        </a>
+                    </div>
+                </div>
+   
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-3 next_goal">
+        <div class="panel panel-default">
+            <div class="panel panel-body">
+                <h3>{{goal.title}}</h3>
+                <p class="goal_description">
+                        {{goal.description}}
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>
+

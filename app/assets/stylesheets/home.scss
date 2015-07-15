@@ -102,3 +102,38 @@ body{
   min-height: 195px;
 }
 
+// goal site 
+
+
+.prev_goal{
+    opacity: 0.5;
+}
+
+.this_goal{
+
+    .goal_timestamp{
+        text-align: right;
+        font-size: 12px;
+    }
+    .goal_description{
+        padding-bottom: 20px;
+        border-bottom: thin solid;  
+    }
+    .waiting{
+        color: green;
+    }
+    .active{
+        color: green;
+    }
+    .achieved{
+        color: brown;
+    }
+    .buttons_container{  
+        text-align: right;
+    }
+}
+
+.next_goal{
+    opacity: 0.5;
+}
+

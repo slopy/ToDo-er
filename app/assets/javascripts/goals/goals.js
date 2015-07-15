@@ -42,7 +42,10 @@ function($http,versionUrl){
 
     obj.show = function(id) {
         return $http.get('/api/' + versionUrl + 'goals/' + id + '.json').success(function(data){
-            obj.goal = data;
+    console.log(JSON.stringify(data))
+            
+            angular.copy(data, obj.goal)
+            
         })
     }
     

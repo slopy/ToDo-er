@@ -9,8 +9,12 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    super
-    sign_in(:user,resource)
+    if params[:user].empty?
+    render :json => { :errors => ["Provide email and password"] },  :success => false, :status => :unauthorized
+    else
+        super
+        sign_in(:user,resource)
+    end
   end
 
   # GET /resource/edit
