@@ -1,6 +1,4 @@
-angular.module('todoer')
-
-.controller('GoalsController', [
+app.controller('GoalsController', [
 '$scope',
 '$stateParams',
 'goals',

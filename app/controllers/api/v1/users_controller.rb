@@ -1,31 +1,23 @@
 
-class Api::V1::UsersController < ApplicationController
+class Api::V1::UsersController < Devise::RegistrationsController
 
     respond_to :json
 
-    before_action :authenticate_user!, except: [:loggedin]
+    before_action :authenticate_user!
 
   def update
     user = current_user
-
+    binding.pry
     if user.password_valid?(user_params[:current_password]) && user.update(user_params)
         sign_in use @user, bypass: true 
         respond_with user
     else
-        respond_with nil
+        render :json => {:errors => user.errors, :user => user }, status: 422 
     end
   end
 
   def delete
     current_user.destroy!
-  end
-
-  def loggedin
-    if signed_in?
-      render :json => { user: current_user }, status: 200
-    else
-      render :json => {}, status: 422
-    end
   end
 
   protected

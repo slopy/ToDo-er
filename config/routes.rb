@@ -6,10 +6,9 @@ Rails.application.routes.draw do
     namespace :api do
         namespace :v1 do
 
-            devise_for :users
-            get 'loggedin', to: 'users#loggedin'
             put 'users', to: 'users#update'
             delete 'users', to: 'users#delete'
+            devise_for :users
 
             resources :goals 
             get 'active_change/:id', to: 'goals#toggleActive'

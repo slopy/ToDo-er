@@ -1,5 +1,4 @@
-angular.module('todoer')
-.controller('NavbarController', [
+app.controller('NavbarController', [
 '$scope',
 '$state',
 'Auth',

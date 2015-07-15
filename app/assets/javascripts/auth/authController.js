@@ -1,6 +1,4 @@
-angular.module('todoer')
-
-.controller('AuthController', [
+app.controller('AuthController', [
 '$scope',
 '$state',
 'Auth',
@@ -11,8 +9,6 @@ function($scope, $state, Auth){
             $state.go('home');
         }, function(data){
             $scope.error = data.data.error
-            console.log(JSON.stringify(data))
-
         });
     };
 
@@ -22,8 +18,6 @@ function($scope, $state, Auth){
 
         }, function(data){
             $scope.errors = data.data.errors
-            alert("sd")
-            console.log(JSON.stringify(data))
         });
     };
 

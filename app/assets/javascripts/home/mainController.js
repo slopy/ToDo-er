@@ -1,6 +1,4 @@
-angular.module('todoer')
-
-.controller('MainController', [
+app.controller('MainController', [
 '$scope',
 '$templateCache',
 '$compile',

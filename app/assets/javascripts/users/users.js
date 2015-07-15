@@ -1,6 +1,4 @@
-angular.module('todoer')
-
-.factory('users', [
+app.factory('users', [
     '$http',
     function($http){
 

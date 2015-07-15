@@ -1,6 +1,4 @@
-angular.module('todoer')
-
-.controller('UsersController', [
+app.controller('UsersController', [
 '$scope',
 '$state',
 '$http',
@@ -8,8 +6,8 @@ angular.module('todoer')
 '$templateCache',
 'goals',
 'Auth',
-'myConstantsProvider',
-function($scope,$state,$http,$compile,$templateCache,goals,Auth,myConstantsProvider){
+'versionUrl',
+function($scope,$state,$http,$compile,$templateCache,goals,Auth,versionUrl){
 
         $scope.user = Auth._currentUser
         goals.getAll()
@@ -17,7 +15,7 @@ function($scope,$state,$http,$compile,$templateCache,goals,Auth,myConstantsProvi
         $scope.goal = { title: 'Goal preview', description: ''}
 
     $scope.updateUser = function(){
-        return $http.put('/api/' + myConstantsProvider._api + '/users.json', {user: $scope.user}).success(function(data){
+        return $http.put('/api/' + versionUrl + '/users.json', {user: $scope.user}).success(function(data){
             angular.copy(data,$scope.user)
             Auth.login(data).then(function(){})
            
@@ -64,7 +62,7 @@ function($scope,$state,$http,$compile,$templateCache,goals,Auth,myConstantsProvi
     } // end of deleteUserClick
 
     $scope.deleteGoalClick = function(){
-        $http.delete('/api/' + myConstantsProvider._api + '/goals/' + $scope.goal.id + '.json')
+        $http.delete('/api/' + versionUrl + '/goals/' + $scope.goal.id + '.json')
 
         $scope.user = Auth._currentUser
         goals.getAll()
@@ -73,7 +71,7 @@ function($scope,$state,$http,$compile,$templateCache,goals,Auth,myConstantsProvi
     }
 
     $scope.previewGoal = function(goal){
-        return $http.get('/api/' + myConstantsProvider._api + '/goals/' + goal.id + '.json')
+        return $http.get('/api/' + versionUrl + '/goals/' + goal.id + '.json')
         .success(function(data){
             angular.copy(data, $scope.goal);
         })
@@ -83,7 +81,7 @@ function($scope,$state,$http,$compile,$templateCache,goals,Auth,myConstantsProvi
     } // previewGoal
 
     $scope.updateGoal = function(goal){
-       $http.put('/api/' + myConstantsProvider._api + "/goals/" + goal.id + ".json",goal).success(function(data){
+       $http.put('/api/' + versionUrl + "/goals/" + goal.id + ".json",goal).success(function(data){
             goals.getAll()
             $scope.goals = goals
             alert(data.id)

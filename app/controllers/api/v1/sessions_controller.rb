@@ -8,18 +8,21 @@ class Api::V1::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
-          render :json => current_user, status: 200 if current_user
-          return invalid_no_params_login_attempt if params[:user].empty?
-          self.resource = warden.authenticate!(:scope => :user)
-          return invalid_login_attempt unless resource
-              
-          if resource.valid_password?(sign_in_params[:password])
-            clean_up_passwords(resource)
-            sign_in(:user,resource)
-            render :json => resource, status: 200
-            
-          return
-      end
+    # return invalid_no_params_login_attempt if params[:user].empty?
+        
+        self.resource = warden.authenticate!(:scope => :user)
+
+    if params[:user].present? && resource.valid_password?(sign_in_params[:password])
+        return invalid_login_attempt unless resource
+        clean_up_passwords(resource)
+        sign_in(:user,resource) unless current_user
+        render :json => resource, status: 200
+    elsif current_user
+        sign_in(:user, current_user)
+        render :json => resource, status: 200
+    else
+        return
+    end
   end
 
   def sign_in_params
@@ -36,11 +39,4 @@ class Api::V1::SessionsController < Devise::SessionsController
     render :json => { :errors => ["Provide email and password"] },  :success => false, :status => :unauthorized
   end
 
-  # def resource_name
-  #   if user_signed_in?
-  #     current_user.name
-  #   else
-  #     current_userr.class.name.underscore
-  #   end
-  # end
 end
