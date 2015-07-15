@@ -26,7 +26,7 @@ function($scope,$state,$http,$compile,$templateCache,goals,Auth,versionUrl){
 
     $scope.deleteUser = function(){
         
-        return $http.delete('/users.json')
+        return $http.delete('/api/' + versionUrl + '/users.json')
         .success(function(data){
             Auth.logout()
             $state.go('register')
@@ -80,13 +80,12 @@ function($scope,$state,$http,$compile,$templateCache,goals,Auth,versionUrl){
         })
     } // previewGoal
 
-    $scope.updateGoal = function(goal){
-       $http.put('/api/' + versionUrl + "/goals/" + goal.id + ".json",goal).success(function(data){
-            goals.getAll()
-            $scope.goals = goals
-            alert(data.id)
-            angular.copy(data,$scope.goal);
-        })
+    $scope.updateGoal = function(){
+        goals.updateGoal($scope,{
+          id: $scope.goal.id,
+          title: $scope.goal.title,
+          description: $scope.goal.description
+          })
     } // end of updateGoal
 
     $scope.editGoalClick = function(goal){
@@ -106,7 +105,7 @@ function($scope,$state,$http,$compile,$templateCache,goals,Auth,versionUrl){
           },
         }]); // end of fancybox
 
-        $('#modal_edit_goal button').on('click', function(e) {
+        $('#modal_edit_goal .btn-warning').on('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
             $(this).parent().hide();

@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20150708213329) do
     t.integer  "category_id"
     t.string   "title"
     t.string   "description"
-    t.boolean  "active"
+    t.boolean  "active",       default: false
     t.boolean  "done",         default: false
     t.integer  "done_percent", default: 0
     t.datetime "created_at",                   null: false

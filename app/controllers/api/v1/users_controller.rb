@@ -14,8 +14,9 @@ class Api::V1::UsersController < ApiController
     end
   end
 
-  def delete
+  def destroy
     current_user.destroy!
+    render :json => {}, status: 200
   end
 
   protected

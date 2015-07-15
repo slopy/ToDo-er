@@ -29,6 +29,7 @@
                     <form ng-submit="updateUser()" >
                         <h4>Edit profile</h4>
                         <small>Your current password is needed.</small>
+                        <div class="login_errors">{{error}}</div>
                         <div class="input-group">
                             <input type="email" class="form-control" placeholder="Email" ng-model="user.email">
                         </div>

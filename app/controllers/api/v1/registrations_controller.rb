@@ -8,9 +8,10 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+    sign_in(:user,resource)
+  end
 
   # GET /resource/edit
   # def edit

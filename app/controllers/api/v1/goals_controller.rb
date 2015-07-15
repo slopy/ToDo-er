@@ -1,10 +1,10 @@
-class Api::V1::GoalsController < ApplicationController
+class Api::V1::GoalsController < ApiController
 
     before_action :authenticate_user!
 
     def index
         all_goals = Goal.where(user_id: current_user.id).order(updated_at: :desc)
-        waiting_goals = all_goals.where.not(active: true).where(done: false) 
+        waiting_goals = all_goals.where(active: false).where(done: false) 
         active_goals = all_goals.where(active: true).where(done: false) 
         done_goals = all_goals.where(active: true).where(done: true)
         goals = {
@@ -13,7 +13,6 @@ class Api::V1::GoalsController < ApplicationController
             active_goals: active_goals,
             achieved_goals: done_goals
         }
-      
         respond_with goals
     end
 
@@ -21,6 +20,7 @@ class Api::V1::GoalsController < ApplicationController
         params[:goal].empty? ? goal=Goal.new : goal = Goal.new(goal_params)
         goal.user = current_user
         if goal.save
+            goal.save!
             render :json => goal, status: 200
         else
             render :json => {:errors => goal.errors, :goal => goal }, status: 422
@@ -32,7 +32,6 @@ class Api::V1::GoalsController < ApplicationController
     end
 
     def update
-        binding.pry
         goal = Goal.find(params[:id])
         goal_check = Goal.new(goal_params)
         goal_check.user = current_user

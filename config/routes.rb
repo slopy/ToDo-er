@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
 
             put 'users', to: 'users#update'
-            delete 'users', to: 'users#delete'
+            delete 'users', to: 'users#destroy'
             devise_for :users 
             resources :goals 
             get 'active_change/:id', to: 'goals#toggleActive'
