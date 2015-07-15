@@ -32,6 +32,7 @@ class Api::V1::GoalsController < ApplicationController
     end
 
     def update
+        binding.pry
         goal = Goal.find(params[:id])
         goal_check = Goal.new(goal_params)
         goal_check.user = current_user

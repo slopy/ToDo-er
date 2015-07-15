@@ -3,9 +3,9 @@ class ApplicationController < ActionController::Base
     # For APIs, you may want to use :null_session instead.
     protect_from_forgery with: :exception
     respond_to :json
-
+    # before_filter :resource_name
     # before_action :configure_permitted_parameters, if: :devise_controller?    
-    # skip_before_filter :verify_authenticity_token
+    skip_before_filter :verify_authenticity_token
     after_filter :set_csrf_cookie_for_ng
 
     def angular
@@ -25,7 +25,4 @@ class ApplicationController < ActionController::Base
     def verified_request?
         super || valid_authenticity_token?(session, request.headers['X-XSRF-TOKEN'])
     end
-
-    protected
-
 end

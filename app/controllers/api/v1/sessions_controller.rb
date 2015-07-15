@@ -9,16 +9,14 @@ class Api::V1::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create
     # return invalid_no_params_login_attempt if params[:user].empty?
-        
         self.resource = warden.authenticate!(:scope => :user)
-
+        
     if params[:user].present? && resource.valid_password?(sign_in_params[:password])
         return invalid_login_attempt unless resource
         clean_up_passwords(resource)
         sign_in(:user,resource) unless current_user
         render :json => resource, status: 200
     elsif current_user
-        sign_in(:user, current_user)
         render :json => resource, status: 200
     else
         return
