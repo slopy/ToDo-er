@@ -99,7 +99,11 @@ body{
 }
 
 .goal_preview{
-  min-height: 195px;
+    min-height: 195px;
+/*    a{
+        color:inherit;
+        text-decoration: none;
+    }*/
 }
 
 // goal site 
@@ -109,15 +113,26 @@ body{
     opacity: 0.5;
 }
 
+.prev_goal:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
 .this_goal{
 
     .goal_timestamp{
         text-align: right;
         font-size: 12px;
     }
+    .goal_title{
+        margin-top: 0px;
+    }
     .goal_description{
         padding-bottom: 20px;
         border-bottom: thin solid;  
+    }
+    .goal_category{
+
     }
     .waiting{
         color: green;
@@ -137,3 +152,7 @@ body{
     opacity: 0.5;
 }
 
+.next_goal:hover {
+    opacity: 1;
+    cursor: pointer;
+}

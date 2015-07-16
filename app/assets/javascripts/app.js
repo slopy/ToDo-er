@@ -32,10 +32,11 @@ function($stateProvider, $urlRouterProvider,$httpProvider,cfpLoadingBarProvider,
         }
     })
     .state('goal', {
-        url: '/goal/:id',
+        url: '/goal/:id?goal',
         templateUrl: 'goals/_goal.html',
         controller: 'GoalsController',
         module: 'private',
+        animationClassName: 'slide_right',
         resolve: {
             Promise: ['$q','Auth', function($q,Auth){
               var userInfo = Auth.currentUser();
@@ -115,7 +116,13 @@ function($stateProvider, $urlRouterProvider,$httpProvider,cfpLoadingBarProvider,
 app.run(function($rootScope, $http, $state, Auth) {
 
     $rootScope.$on("$stateChangeStart", function(e, toState, toParams, fromState, fromParams) {
+        
+        $rootScope.animateViewChange = toState.animationClassName || 'slide_from_top';
 
+        if ((toState.animationClassName == 'slide_right') && (toParams.goal == 'prev')) {
+            $rootScope.animateViewChange = 'slide_left'
+        }
+    
         Auth.currentUser().then(function(user) {
             if (toState.module == 'private'){   
             } else if  (toState.module == 'public'){
@@ -132,4 +139,6 @@ app.run(function($rootScope, $http, $state, Auth) {
         }); 
     });
 });
+
+
 

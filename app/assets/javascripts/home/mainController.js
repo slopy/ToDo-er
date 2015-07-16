@@ -4,12 +4,12 @@ app.controller('MainController', [
 '$compile',
 '$http',
 'goals',
-function($scope,$templateCache,$compile,$http,goals){
+function($scope, $templateCache,$compile,$http,goals){
     goals.getAll()
     $scope.goal = goals.goal
     $scope.goals = goals
-    $scope.errors = goals.errors
-      
+    $scope.errors = goals.errors    
+
     $scope.addGoal = function(){
 
         goals.create($scope,{

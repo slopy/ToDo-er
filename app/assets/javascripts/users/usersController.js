@@ -68,7 +68,7 @@ function($scope,$state,$http,$compile,$templateCache,goals,Auth,versionUrl){
         goals.getAll()
         $scope.goal = { title: 'Deleted!'}
         $scope.goals = goals
-    }
+    } // end of deleteGoalClick
 
     $scope.previewGoal = function(goal){
         return $http.get('/api/' + versionUrl + '/goals/' + goal.id + '.json')

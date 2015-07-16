@@ -5,6 +5,8 @@ function($http,versionUrl){
 
 	var obj = {
         goal: {},
+        prev_goal: {},
+        next_goal: {},
         errors: {},
 
         goals: [],
@@ -42,10 +44,11 @@ function($http,versionUrl){
 
     obj.show = function(id) {
         return $http.get('/api/' + versionUrl + 'goals/' + id + '.json').success(function(data){
-    console.log(JSON.stringify(data))
             
             angular.copy(data, obj.goal)
-            
+            angular.copy(obj.set_prev_goal(), obj.prev_goal)
+            angular.copy(obj.set_next_goal(), obj.next_goal)
+    
         })
     }
     
@@ -99,6 +102,47 @@ function($http,versionUrl){
             angular.copy(data.goal, obj.goal)
         })
     } // edn of updateGoa
+
+    obj.set_prev_goal = function(){
+
+        if (obj.goal.active == false){
+            indexOfPrev = findWithAttr(obj.waiting_goals,"id",obj.goal.id) - 1
+            return obj.waiting_goals[indexOfPrev]
+        }
+
+        if ((obj.goal.active == true) && (obj.goal.done == false)){
+            indexOfPrev = findWithAttr(obj.active_goals,"id",obj.goal.id) - 1
+            return obj.active_goals[indexOfPrev]
+        }
+
+        if (obj.goal.done == true){
+            indexOfPrev = findWithAttr(obj.achieved_goals,"id",obj.goal.id) - 1
+            return obj.achieved_goals[indexOfPrev]
+        }
+
+        return {}
+    } // end of prev_goal
+
+    obj.set_next_goal = function(){
+ 
+        if (obj.goal.active == false){
+            indexOfPrev = findWithAttr(obj.waiting_goals,"id",obj.goal.id) + 1
+            return obj.waiting_goals[indexOfPrev]
+        }
+
+        if ((obj.goal.active == true) && (obj.goal.done == false)){
+            indexOfPrev = findWithAttr(obj.active_goals,"id",obj.goal.id) + 1
+            return obj.active_goals[indexOfPrev]
+        }
+
+        if (obj.goal.done == true){
+            indexOfPrev = findWithAttr(obj.achieved_goals,"id",obj.goal.id) + 1
+            return obj.achieved_goals[indexOfPrev]
+        }
+
+        return {}
+
+    } // end of next_goal
 
     function findWithAttr(array, attr, value) {
     for(var i = 0; i < array.length; i += 1) {

@@ -42,17 +42,17 @@
 
 }
 
-.view-animate {
+.slide_from_top {
   padding:10px;
 }
 
-.view-animate.ng-enter, .view-animate.ng-leave {
+.slide_from_top.ng-enter, .slide_from_top.ng-leave {
   -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
   transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
 
   display:block;
   width:100%;
-  border-left:1px solid black;
+  /*border-bottom:1px solid black;*/
 
   position:absolute;
   top:0;
@@ -62,12 +62,77 @@
   padding:10px;
 }
 
-.view-animate.ng-enter {
-  left:100%;
+.slide_from_top.ng-enter {
+  top:-100%;
 }
-.view-animate.ng-enter.ng-enter-active {
+.slide_from_top.ng-enter.ng-enter-active {
+  top:0;
+}
+.slide_from_top.ng-leave.ng-leave-active {
+  top:100%;
+}
+
+/*  in goals controller */
+
+
+/* slide between goals to right */
+.slide_right {
+  padding:10px;
+}
+
+.slide_right.ng-enter, .slide_right.ng-leave {
+  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
+
+  display:block;
+  width:100%;
+
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  padding:10px;
+}
+
+.slide_right.ng-enter {
+  left:-100%;
+}
+.slide_right.ng-enter.ng-enter-active {
   left:0;
 }
-.view-animate.ng-leave.ng-leave-active {
+.slide_right.ng-leave.ng-leave-active {
+  left:100%;
+}
+
+
+/* slide to left */
+
+.slide_left {
+  padding:10px;
+}
+
+.slide_left.ng-enter, .slide_left.ng-leave {
+  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
+
+  display:block;
+  width:100%;
+
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  padding:10px;
+}
+
+.slide_left.ng-enter {
+  left:100%;
+}
+.slide_left.ng-enter.ng-enter-active {
+  left:0;
+}
+.slide_left.ng-leave.ng-leave-active {
   left:-100%;
 }
