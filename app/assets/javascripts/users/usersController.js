@@ -5,10 +5,12 @@ app.controller('UsersController', [
 '$compile',
 '$templateCache',
 'goals',
+'users',
 'Auth',
 'versionUrl',
-function($scope,$state,$http,$compile,$templateCache,goals,Auth,versionUrl){
-
+function($scope,$state,$http,$compile,$templateCache,goals,users,Auth,versionUrl){
+        users.get_stats()
+        $scope.stats = users.stats
         $scope.user = Auth._currentUser
         goals.getAll()
         $scope.goals = goals
@@ -68,6 +70,9 @@ function($scope,$state,$http,$compile,$templateCache,goals,Auth,versionUrl){
         goals.getAll()
         $scope.goal = { title: 'Deleted!'}
         $scope.goals = goals
+
+        users.get_stats()
+        $scope.stats = users.stats
     } // end of deleteGoalClick
 
     $scope.previewGoal = function(goal){

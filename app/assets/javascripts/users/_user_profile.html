@@ -5,21 +5,33 @@
 <div class="row">
     <div class="col-sm-3">
         <div class="row">
-            <div class="col-sm-5">
+            <div class="col-sm-4">
                 <a class="thumbnail avatar text-center">
                     <i class="fa fa-user"></i>
                 </a>
+                 <p>
+                    <button id="edit_user" class="btn btn-info">edit</button>
+                </p>  
             </div>
-            <div class="col-sm-7">
+            <div class="col-sm-8 text-right">
                 <p>
                     {{user.email}}
                 </p>
                 <p>
                     <small> created: {{user.created_at | date : 'd-MM-yyyy' : 'CEST' }} </small>
                 </p>
-                <p>
-                    <button id="edit_user" class="btn btn-info">edit</button>
-                </p>  
+                <p class="">
+                    all goals : 
+                    <span class="badge"> {{stats.goals}}</span><br/>
+                    waiting goals :
+                    <span class="badge">{{stats.waiting_goals}}</span><br/>
+                    active goals :  
+                    <span class="badge">{{stats.active_goals}}</span><br/>
+                    achieved goals :  
+                    <span class="badge">{{stats.achieved_goals}}</span><br/>
+                  
+                </p>
+
             </div>
         </div>
         

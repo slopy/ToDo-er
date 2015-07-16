@@ -64,12 +64,17 @@
 
 .slide_from_top.ng-enter {
   top:-100%;
+  opacity: 0;
+
 }
 .slide_from_top.ng-enter.ng-enter-active {
   top:0;
+  opacity: 1;
 }
 .slide_from_top.ng-leave.ng-leave-active {
   top:100%;
+  opacity: 0;
+
 }
 
 /*  in goals controller */
@@ -97,12 +102,16 @@
 
 .slide_right.ng-enter {
   left:-100%;
+  opacity: 0;
 }
 .slide_right.ng-enter.ng-enter-active {
   left:0;
+  opacity: 1;
+
 }
 .slide_right.ng-leave.ng-leave-active {
   left:100%;
+  opacity: 0;
 }
 
 
@@ -129,10 +138,14 @@
 
 .slide_left.ng-enter {
   left:100%;
+  opacity: 0;
 }
 .slide_left.ng-enter.ng-enter-active {
   left:0;
+  opacity: 1;
+
 }
 .slide_left.ng-leave.ng-leave-active {
   left:-100%;
+  opacity: 0;
 }
