@@ -12,12 +12,15 @@ class User < ActiveRecord::Base
         waiting_goals = all_goals.where(active: false).where(done: false) 
         active_goals = all_goals.where(active: true).where(done: false) 
         done_goals = all_goals.where(active: true).where(done: true)
+        categories = Category.all
 
         goals = {
             goals: all_goals,
             waiting_goals: waiting_goals,
             active_goals: active_goals,
-            achieved_goals: done_goals
+            achieved_goals: done_goals,
+            categories: categories
+
         }
     end
 

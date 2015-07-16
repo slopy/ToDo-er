@@ -1,7 +1,5 @@
 class Api::V1::GoalsController < ApiController
 
-    before_action :authenticate_user!
-
     def index
         
         goals = current_user.goal_lists
@@ -66,6 +64,6 @@ class Api::V1::GoalsController < ApiController
     private
 
     def goal_params
-        params.require(:goal).permit(:id, :title, :description, :user_id, :category_id, :done, :done_percent, :active)
+        params.require(:goal).permit(:id, :title, :description, :user_id, :category_id, :done, :done_percent, :active, :categoy_title)
     end
 end

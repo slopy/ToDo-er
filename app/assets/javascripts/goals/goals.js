@@ -12,7 +12,8 @@ function($http,versionUrl){
         goals: [],
         waiting_goals: [],
         active_goals: [],
-        achieved_goals: []
+        achieved_goals: [],
+        categories:[]
 		};
 
     obj.getAll = function() {
@@ -21,6 +22,7 @@ function($http,versionUrl){
             angular.copy(data.active_goals, obj.active_goals);
             angular.copy(data.waiting_goals, obj.waiting_goals);
             angular.copy(data.achieved_goals, obj.achieved_goals);
+            angular.copy(data.categories, obj.categories);
         }); // end of success
     }; // end of getAll
 

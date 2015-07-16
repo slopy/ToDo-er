@@ -12,8 +12,8 @@ function($scope,$rootScope, $stateParams, goals,$templateCache,$compile,$http,ve
 
     goals.getAll()
     goals.show($stateParams.id)
-
     $scope.goal = goals.goal
+    $scope.categories = goals.categories
     $scope.prev_goal = goals.prev_goal
     $scope.next_goal = goals.next_goal
 

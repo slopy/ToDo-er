@@ -1,6 +1,7 @@
 class Goal < ActiveRecord::Base
 
     belongs_to :user
+    belongs_to :category
 
     # validations:
     validates :user, presence: true
