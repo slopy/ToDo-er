@@ -9,12 +9,23 @@ function($scope, $templateCache,$compile,$http,goals){
     $scope.goal = goals.goal
     $scope.goals = goals
     $scope.errors = goals.errors    
+    var objs = goals.categories.map(function(obj){
+      return obj.title
+    })
+    $scope.categories = objs
+
+      // gives another movie array on change
+      $scope.updateCategories = function(typed){
+          // MovieRetriever could be some service returning a promise
+            return $scope.movies
+      }
 
     $scope.addGoal = function(){
 
         goals.create($scope,{
             title: $scope.title,
             description: $scope.description,
+            category: $scope.category
         });
 
     }; // end of addGoal
@@ -33,14 +44,17 @@ function($scope, $templateCache,$compile,$http,goals){
         goals.updateGoal($scope,{
           id: $scope.goal.id,
           title: $scope.goal.title,
-          description: $scope.goal.description
+          description: $scope.goal.description,
+          category: $scope.goal.category
+
           })
 
     } // edn of updateGoal
 
     $scope.editGoalClick = function(goal){
         $scope.errors = {}
-        $scope.goal = angular.copy(goal)
+        goals.show(goal.id)
+        $scope.goal = goals.goal
 
         var content = $templateCache.get('goals/_modal_edit_goal.html')
         var template = $compile(content)($scope)
@@ -77,7 +91,7 @@ function($scope, $templateCache,$compile,$http,goals){
 
         $.fancybox.open([{ 
           content : template,
-          title: "<h3 class='text-center'>Add new Goal!</h3><br/>",
+          title: "<h3 class='text-center'>Adsd new Goal!</h3><br/>",
           helpers : { 
             title : {
               type: 'inside',

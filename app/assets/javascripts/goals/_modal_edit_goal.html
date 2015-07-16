@@ -20,6 +20,8 @@
                 ng-model="goal.description"></textarea>
         </div>
 
+        <autocomplete ng-model="goal.category.title" data="categories" on-type="updateCategories" attr-placeholder="category" attr-inputclass="form-control" >
+         </autocomplete>
         <br/>
         <button type="submit" class="btn btn-success">
             <i class="fa fa-check"></i>&nbsp Update

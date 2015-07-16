@@ -13,7 +13,7 @@ function($http,versionUrl){
         waiting_goals: [],
         active_goals: [],
         achieved_goals: [],
-        categories:[]
+        categories: []
 		};
 
     obj.getAll = function() {
@@ -35,6 +35,7 @@ function($http,versionUrl){
             angular.copy({}, obj.errors)
             scope.title = ""
             scope.description = ""
+            scope.category = ""
 
             $.fancybox.close()
         }).error(function(data){
@@ -81,7 +82,7 @@ function($http,versionUrl){
 
     obj.updateGoal = function(scope,goal){
 
-        return $http.put('/api/' + versionUrl + 'goals/' + goal.id + '.json', data = {title: goal.title, description: goal.description})
+        return $http.put('/api/' + versionUrl + 'goals/' + goal.id + '.json', goal)
         .success(function(data){
             
             if (data.goal.done == true) {
@@ -145,6 +146,18 @@ function($http,versionUrl){
         return {}
 
     } // end of next_goal
+
+
+    obj.getCategories = function(){
+        return $http.get('/api/' + versionUrl + 'categories.json').success(function(date){
+            angular.copy(data[0],obj.categories)
+        }).error(function(data){
+            console.log(data)
+        })
+        return {}
+
+    }
+
 
     function findWithAttr(array, attr, value) {
     for(var i = 0; i < array.length; i += 1) {

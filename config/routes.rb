@@ -13,6 +13,8 @@ Rails.application.routes.draw do
             resources :goals 
             get 'active_change/:id', to: 'goals#toggleActive'
             get 'done_change/:id', to: 'goals#toggleDone'
+            resources :categories 
+
 
         end
     end

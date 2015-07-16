@@ -112,33 +112,3 @@ function($stateProvider, $urlRouterProvider,$httpProvider,cfpLoadingBarProvider,
     // AuthInterceptProvider.interceptAuth(true);
 // 
 }])
-
-app.run(function($rootScope, $http, $state, Auth) {
-
-    $rootScope.$on("$stateChangeStart", function(e, toState, toParams, fromState, fromParams) {
-        
-        $rootScope.animateViewChange = toState.animationClassName || 'slide_from_top';
-
-        if ((toState.animationClassName == 'slide_right') && (toParams.goal == 'prev')) {
-            $rootScope.animateViewChange = 'slide_left'
-        }
-    
-        Auth.currentUser().then(function(user) {
-            if (toState.module == 'private'){   
-            } else if  (toState.module == 'public'){
-                e.preventDefault()
-                $state.go("home")
-            }
-        }, function(error) {
-            if (toState.module == 'private'){
-                e.preventDefault()
-                $state.go("login")
-            } else if  (toState.module == 'public'){
-
-            }
-        }); 
-    });
-});
-
-
-

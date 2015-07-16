@@ -15,5 +15,10 @@ Goal.create(
 	description: "Description for goal nr #{g}",
     user_id: User.last
 	)
+}
 
+(1..10).each { |c|
+Category.create(
+    title: "category nr #{c}"
+    )
 }

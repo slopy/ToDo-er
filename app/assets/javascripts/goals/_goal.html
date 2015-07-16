@@ -58,19 +58,10 @@
                         <h4> 
                             <p>
                             <span class="label label-primary goal_category">
-                            Name of category
+                            {{goal.category.title}}
                             </span>
                             <p/>
                             <br/>
-                            <select ng-model="goal.category.id">
-                               <option 
-                                   ng-repeat="cat in categories" 
-                                   value="{{cat.id}}"
-                               >
-                                   {{cat.title}}
-                               </option>
-                            </select>
-
                         </h4>
                     </div>
 

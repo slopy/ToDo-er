@@ -13,15 +13,19 @@ function($scope,$rootScope, $stateParams, goals,$templateCache,$compile,$http,ve
     goals.getAll()
     goals.show($stateParams.id)
     $scope.goal = goals.goal
-    $scope.categories = goals.categories
     $scope.prev_goal = goals.prev_goal
     $scope.next_goal = goals.next_goal
+    var objs = goals.categories.map(function(obj){
+      return obj.title
+    })
+    $scope.categories = objs
 
     $scope.updateGoal = function(){
         goals.updateGoal($scope,{
           id: $scope.goal.id,
           title: $scope.goal.title,
-          description: $scope.goal.description
+          description: $scope.goal.description,
+          category: $scope.goal.category.title
           })
 
     } // end of updateGoal
@@ -95,27 +99,3 @@ function($scope,$rootScope, $stateParams, goals,$templateCache,$compile,$http,ve
         }
 }
 ])
-
-
-
-// app.directive('animationpreviousgoal', function() {
-
-//     return {
-//         link: function(scope, $element) {
-             
-//             $element.on('mouseenter', function() {
-//                 $element.addClass('slide_left');
-//                 $element.removeClass('slide_from_top');
-//                 $('.view-animate-container').removeClass('view-animate-container')
-
-//             });
-//             $element.on('mouseleave', function() {
-//                 // $('#main_view').removeClass('slide_left');
-          
-//             });
-//         }
-//     };
-// })
-
-
-
