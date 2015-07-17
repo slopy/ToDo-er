@@ -11,6 +11,7 @@ Rails.application.routes.draw do
             delete 'users', to: 'users#destroy'
             devise_for :users 
             resources :goals 
+            post 'goal/:id/upload_file', to: 'goals#upload_file'
             get 'active_change/:id', to: 'goals#toggleActive'
             get 'done_change/:id', to: 'goals#toggleDone'
             resources :categories 

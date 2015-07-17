@@ -51,7 +51,6 @@ function($http,versionUrl){
             angular.copy(data, obj.goal)
             angular.copy(obj.set_prev_goal(), obj.prev_goal)
             angular.copy(obj.set_next_goal(), obj.next_goal)
-    
         })
     }
     

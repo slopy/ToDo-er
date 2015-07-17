@@ -97,9 +97,17 @@
 
 </div>
 <div class="row">
-
-    <div class="col-sm-3 col-sm-offset-3 col-centered">
-        <div class="panel panel-default text-center" ng-if="files[0]">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-3 col-centered" ng-if="goal.file.url.length > 0">
+        <div class="panel panel-default text-center">
+            <a href="{{goal.file.url}}" download>
+                <img src="{{goal.file.url}}" ngf-accept="'image/*'" class="image_preview">
+            </a>
+            <button>x</button>
+        </div>
+    </div>
+    <div class="col-sm-3 col-centered" ng-if="files[0]">
+        <div class="panel panel-default text-center">
             <img ngf-src="files[0]" ngf-accept="'image/*'" class="image_preview">
         </div>
     </div>

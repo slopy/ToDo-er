@@ -19,7 +19,7 @@ class Api::V1::GoalsController < ApiController
     end
 
     def show
-        goal = Goal.includes(:user).find(params[:id]).to_json(include: [:user,:category])
+        goal = Goal.includes(:user).find(params[:id]).to_json(include: [:user,:category,:file])
         render :json => goal, status: 200
     end
 
@@ -67,9 +67,20 @@ class Api::V1::GoalsController < ApiController
         render :json => goal, status: 200
     end
 
+    def upload_file
+
+        goal = Goal.find(params[:id])
+        goal.file = goal_params[:file] 
+        if goal.save
+            render :json => {}, status: 200
+        else
+            render :json => {}, status: 422
+        end
+    end
+
     private
 
     def goal_params
-        params.require(:goal).permit(:id, :title, :description, :user_id, :category_id, :done, :done_percent, :active, :category)
+        params.require(:goal).permit(:id, :title, :description, :user_id, :category_id, :done, :done_percent, :active, :category, :file)
     end
 end

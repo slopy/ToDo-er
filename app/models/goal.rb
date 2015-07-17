@@ -1,4 +1,7 @@
 class Goal < ActiveRecord::Base
+require 'carrierwave/orm/activerecord'
+
+mount_uploader :file, GoalFileUploader
 
     belongs_to :user
     belongs_to :category

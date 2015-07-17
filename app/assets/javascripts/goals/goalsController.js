@@ -34,15 +34,19 @@ function($scope,$rootScope, $stateParams, goals,$templateCache,$compile,$http,ve
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
                 $scope.upload = Upload.upload({
-                    url: '/api/' + versionUrl + '/goals/upload_file.json',
+                    url: '/api/' + versionUrl + '/goal/' + $stateParams.id + '/upload_file.json',
                     method: 'POST',
                     fields: { 'goal[id]': $scope.goal.id },
                     file: file,
-                    fileFormDataName: 'goal[image]'
+                    fileFormDataName: 'goal[file]'
                 });
             }
         }
-    }
+    } // end of upload
+
+    $scope.deleteGoalFile = function (files) {
+        
+    } // end of upload
 
     $scope.updateGoal = function(){
         goals.updateGoal($scope,{
@@ -89,7 +93,7 @@ function($scope,$rootScope, $stateParams, goals,$templateCache,$compile,$http,ve
 
     } // end of editGoalClick
 
-        $scope.deleteUserClick = function(){
+    $scope.deleteUserClick = function(){
         var content = $templateCache.get('users/_modal_delete_confirmation.html')
         var template = $compile(content)($scope)
 
