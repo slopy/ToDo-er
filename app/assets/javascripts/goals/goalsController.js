@@ -8,17 +8,41 @@ app.controller('GoalsController', [
 '$http',
 'versionUrl',
 '$state',
-function($scope,$rootScope, $stateParams, goals,$templateCache,$compile,$http,versionUrl,$state){
+'Upload',
+function($scope,$rootScope, $stateParams, goals,$templateCache,$compile,$http,versionUrl,$state,Upload){
 
     goals.getAll()
     goals.show($stateParams.id)
     $scope.goal = goals.goal
     $scope.prev_goal = goals.prev_goal
     $scope.next_goal = goals.next_goal
+
+
     var objs = goals.categories.map(function(obj){
       return obj.title
     })
     $scope.categories = objs
+
+    $scope.files = []
+
+    $scope.$watch('files', function () {
+        $scope.upload($scope.files);
+    });
+
+    $scope.upload = function (files) {
+        if (files != null){
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                $scope.upload = Upload.upload({
+                    url: '/api/' + versionUrl + '/goals/upload_file.json',
+                    method: 'POST',
+                    fields: { 'goal[id]': $scope.goal.id },
+                    file: file,
+                    fileFormDataName: 'goal[image]'
+                });
+            }
+        }
+    }
 
     $scope.updateGoal = function(){
         goals.updateGoal($scope,{

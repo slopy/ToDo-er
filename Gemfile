@@ -45,6 +45,8 @@ gem "therubyracer"
 gem 'sprockets', '2.12.3'
 
 gem 'responders'
+
+gem 'carrierwave'
 # ---------- For AngularJS -----------
 
 

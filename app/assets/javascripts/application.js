@@ -21,5 +21,6 @@
 //= require angular-devise
 //= require angular-loading-bar
 //= require angular-animate
+//= require ng-file-upload
 //= require_tree .
 
