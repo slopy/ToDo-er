@@ -8,14 +8,14 @@
 
 
 
-(1..10).each { |g|
+# (1..10).each { |g|
 
-Goal.create(
-	title: "goal nr #{g}",
-	description: "Description for goal nr #{g}",
-    user_id: User.last
-	)
-}
+# Goal.create(
+# 	title: "goal nr #{g}",
+# 	description: "Description for goal nr #{g}",
+#     user_id: User.last
+# 	)
+# }
 
 (1..10).each { |c|
 Category.create(

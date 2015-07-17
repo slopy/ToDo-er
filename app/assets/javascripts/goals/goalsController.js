@@ -75,6 +75,8 @@ function($scope,$rootScope, $stateParams, goals,$templateCache,$compile,$http,ve
         
         $.fancybox.open([{ 
           content : template,
+          modal: false,
+          zIndex: 10000000,
           title: "<h3 class='text-center'> Edit goal </h3>",
           helpers : { 
             title : {

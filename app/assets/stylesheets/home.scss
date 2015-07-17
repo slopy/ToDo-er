@@ -100,12 +100,25 @@ body{
 
 .goal_preview{
     min-height: 195px;
-/*    a{
-        color:inherit;
-        text-decoration: none;
-    }*/
+
 }
 
+.categories_container{
+    margin-bottom: 10px;
+}
+span.category {
+    font-size: 14px;
+    width: 100%;
+    display: inline-block;
+    i {
+        padding-left: 3px;
+        cursor: pointer;
+        float: right;
+    }
+    i:hover {
+        color: #5bc0de;
+    }
+}
 // goal site 
 
 .drop_zone{

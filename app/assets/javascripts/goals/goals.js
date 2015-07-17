@@ -37,6 +37,13 @@ function($http,versionUrl){
             scope.description = ""
             scope.category = ""
 
+            obj.categories.push(data.category)
+
+            var objs = obj.categories.map(function(obj){
+              return obj.title
+            })
+            scope.categories = objs
+
             $.fancybox.close()
         }).error(function(data){
             angular.copy(data.errors, obj.errors)
@@ -96,6 +103,14 @@ function($http,versionUrl){
                 }
             } 
             scope.errors = {}
+
+            obj.categories.push(data.category)
+
+            var objs = obj.categories.map(function(obj){
+              return obj.title
+            })
+            scope.categories = objs
+
             $.fancybox.close();
 
         }).error(function(data){
@@ -103,6 +118,7 @@ function($http,versionUrl){
             scope.errors = data.errors
             angular.copy(data.goal, obj.goal)
         })
+        return obj
     } // edn of updateGoa
 
     obj.set_prev_goal = function(){
@@ -151,7 +167,6 @@ function($http,versionUrl){
         return $http.get('/api/' + versionUrl + 'categories.json').success(function(date){
             angular.copy(data[0],obj.categories)
         }).error(function(data){
-            console.log(data)
         })
         return {}
 
