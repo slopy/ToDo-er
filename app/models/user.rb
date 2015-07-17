@@ -4,12 +4,12 @@ class User < ActiveRecord::Base
     devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-    has_many :goals, join_table: :categories, dependent: :destroy
+    has_many :goals, dependent: :destroy
 
     def goal_lists
         all_goals = Goal.where(user_id: self.id).order(updated_at: :desc)
         waiting_goals = all_goals.where(active: false).where(done: false)
-        active_goals = all_goals.where(active: true).where(done: false) 
+        active_goals = all_goals.where(active: true).where(done: false)
         done_goals = all_goals.where(active: true).where(done: true)
         categories = Category.all
 

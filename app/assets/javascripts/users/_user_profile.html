@@ -41,7 +41,11 @@
                     <form ng-submit="updateUser()" >
                         <h4>Edit profile</h4>
                         <small>Your current password is needed.</small>
-                        <div class="login_errors">{{error}}</div>
+
+                        <div ng-if="errors.password.length > 0" class="login_errors">Password {{errors.password[0]}}</div>
+                        <div ng-if="errors.password_confirmation.length > 0" class="login_errors">
+                        Password confirmation {{errors.password_confirmation[0]}}</div>
+
                         <div class="input-group">
                             <input type="email" class="form-control" placeholder="Email" ng-model="user.email">
                         </div>
@@ -72,28 +76,48 @@
 
     <div class="col-sm-9">
         <div class="row">
-            <div class="col-sm-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Active goals
+            <div class="col-sm-8">
+                <div class="row">
+                    <div class="col-sm-12">
+                    <h4>category list:</h4>
+                    <p>
+                        <div class="row">
+                            <div class="col-sm-4 categories_container" ng-repeat="category in categories ">
+                                <!-- track by $index -->
+                            <span class="label label-primary category">
+                                {{category}}
+                                <i class="fa fa-times" ng-click="deleteCategory(category)">
+                                </i>
+                            </span>
+                            </div>
+                        </div>
+                    </p>
+
                     </div>
-                    <ul class="list-group">
-                      <a href="" class="list-group-item" ng-repeat="goal in goals.active_goals"  ng-click="previewGoal(goal)" >
-                        {{goal.title}}
-                      </a>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Achieved goals
+                    <div class="col-sm-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Active goals
+                            </div>
+                            <ul class="list-group">
+                              <a href="" class="list-group-item" ng-repeat="goal in goals.active_goals"  ng-click="previewGoal(goal)" >
+                                {{goal.title}}
+                              </a>
+                            </ul>
+                        </div>
                     </div>
-                    <ul class="list-group">
-                      <a href="" class="list-group-item" ng-repeat="goal in goals.achieved_goals" ng-click="previewGoal(goal)">
-                        {{goal.title}}
-                      </a>
-                    </ul>
+                    <div class="col-sm-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Achieved goals
+                            </div>
+                            <ul class="list-group">
+                              <a href="" class="list-group-item" ng-repeat="goal in goals.achieved_goals" ng-click="previewGoal(goal)">
+                                {{goal.title}}
+                              </a>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-sm-4">
@@ -117,6 +141,7 @@
                 </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>

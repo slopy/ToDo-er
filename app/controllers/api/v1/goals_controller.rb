@@ -12,7 +12,7 @@ class Api::V1::GoalsController < ApiController
         goal.user = current_user
         if goal.save
             goal.save!
-            render :json => goal, status: 200
+            render :json => goal.to_json(include: :category), status: 200
         else
             render :json => {:errors => goal.errors, :goal => goal }, status: 422
         end
@@ -33,7 +33,7 @@ class Api::V1::GoalsController < ApiController
             goal.update_columns(goal_params)
             goal.update_columns(category_id: category.id)
             goal = goal.to_json(include: [:user,:category])
-            render :json => {:goal => goal }, status: 200
+            render :json => {:goal => goal, :category => category }, status: 200
         else
             goal.category = category
             goal.update(goal_params)

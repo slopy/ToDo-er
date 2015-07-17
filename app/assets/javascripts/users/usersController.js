@@ -16,13 +16,32 @@ function($scope,$state,$http,$compile,$templateCache,goals,users,Auth,versionUrl
         $scope.goals = goals
         $scope.goal = { title: 'Goal preview', description: ''}
 
+        var objs = goals.categories.map(function(obj){
+          return obj.title
+        })
+        $scope.categories = objs
+
+      // gives another movie array on change
+    $scope.updateCategories = function(typed){
+        // MovieRetriever could be some service returning a promise
+        return $scope.movies
+    }
+
+    $scope.deleteCategory = function(category){
+        $http.delete('/api/' + versionUrl + 'categories/' + category +'.json').success(function(data){
+            var index = $scope.categories.indexOf(category);
+            $scope.categories.splice(index, 1); 
+        })
+
+    }
+
     $scope.updateUser = function(){
         return $http.put('/api/' + versionUrl + '/users.json', {user: $scope.user}).success(function(data){
             angular.copy(data,$scope.user)
             Auth.login(data).then(function(){})
            
         }).error(function(data){
-            console.log(data);
+            $scope.errors = data.errors
         })
     } // end of updateUser
 
@@ -89,7 +108,8 @@ function($scope,$state,$http,$compile,$templateCache,goals,users,Auth,versionUrl
         goals.updateGoal($scope,{
           id: $scope.goal.id,
           title: $scope.goal.title,
-          description: $scope.goal.description
+          description: $scope.goal.description,
+          category: $scope.goal.category.title
           })
     } // end of updateGoal
 
@@ -98,25 +118,26 @@ function($scope,$state,$http,$compile,$templateCache,goals,users,Auth,versionUrl
         var content = $templateCache.get('goals/_modal_edit_goal.html')
         var template = $compile(content)($scope)
 
+        goals.show(goal.id).then(function(){
 
-        $.fancybox.open([{ 
-          content : template,
-          title: "<h3 class='text-center'> Edit goal </h3>",
-          helpers : { 
-            title : {
-              type: 'inside',
-              position: 'top'
-            }
-          },
-        }]); // end of fancybox
+            $.fancybox.open([{ 
+              content : template,
+              title: "<h3 class='text-center'> Edit goal </h3>",
+              helpers : { 
+                title : {
+                  type: 'inside',
+                  position: 'top'
+                }
+              },
+            }]); // end of fancybox
 
-        $('#modal_edit_goal .btn-warning').on('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            $(this).parent().hide();
-            $.fancybox.close();
-        });
-
+            $('#modal_edit_goal .btn-warning').on('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                $(this).parent().hide();
+                $.fancybox.close();
+            });
+        })
     } // end of editGoalClick
 
     // EVENTS

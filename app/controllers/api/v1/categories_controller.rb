@@ -1,4 +1,4 @@
-class Api::V1::CategoriesController < ApplicationController
+class Api::V1::CategoriesController < ApiController
 
     def index
         categories = Category.all
@@ -15,9 +15,9 @@ class Api::V1::CategoriesController < ApplicationController
     end
 
     def destroy
-        category = Category.find(params[:id])
+        category = Category.where(title: params[:id]).first
         category.destroy!
-        respond_with :nil
+        respond_with :json => {}, status: 200
     end
 
     private 

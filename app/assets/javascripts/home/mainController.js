@@ -14,18 +14,16 @@ function($scope, $templateCache,$compile,$http,goals){
     })
     $scope.categories = objs
 
-      // gives another movie array on change
-      $scope.updateCategories = function(typed){
-          // MovieRetriever could be some service returning a promise
-            return $scope.movies
-      }
+    $scope.updateCategories = function(typed){
+        return $scope.movies
+    }
 
     $scope.addGoal = function(){
 
         goals.create($scope,{
             title: $scope.title,
             description: $scope.description,
-            category: $scope.category
+            category: $scope.category.title
         });
 
     }; // end of addGoal
@@ -45,7 +43,7 @@ function($scope, $templateCache,$compile,$http,goals){
           id: $scope.goal.id,
           title: $scope.goal.title,
           description: $scope.goal.description,
-          category: $scope.goal.category
+          category: $scope.goal.category.title
 
           })
 
@@ -53,8 +51,8 @@ function($scope, $templateCache,$compile,$http,goals){
 
     $scope.editGoalClick = function(goal){
         $scope.errors = {}
-        goals.show(goal.id)
-        $scope.goal = goals.goal
+
+        goals.show(goal.id).then(function(){
 
         var content = $templateCache.get('goals/_modal_edit_goal.html')
         var template = $compile(content)($scope)
@@ -76,6 +74,8 @@ function($scope, $templateCache,$compile,$http,goals){
             $(this).parent().hide();
             $.fancybox.close();
         });
+    })
+    $scope.goal = goals.goal
 
     } // end of editGoalClick
 
