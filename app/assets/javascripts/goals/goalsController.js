@@ -17,7 +17,6 @@ function($scope,$rootScope, $stateParams, goals,$templateCache,$compile,$http,ve
     $scope.prev_goal = goals.prev_goal
     $scope.next_goal = goals.next_goal
 
-
     var objs = goals.categories.map(function(obj){
       return obj.title
     })
@@ -25,11 +24,7 @@ function($scope,$rootScope, $stateParams, goals,$templateCache,$compile,$http,ve
 
     $scope.files = []
 
-    $scope.$watch('files', function () {
-        $scope.upload($scope.files);
-    });
-
-    $scope.upload = function (files) {
+    $scope.upload = function(files) {
         if (files != null){
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
@@ -44,8 +39,12 @@ function($scope,$rootScope, $stateParams, goals,$templateCache,$compile,$http,ve
         }
     } // end of upload
 
-    $scope.deleteGoalFile = function (files) {
-        
+    $scope.deleteGoalFile = function(files) {
+        $http.get('/api/' + versionUrl + '/goal/' + $stateParams.id + '/destroy_file.json').success(function(data){
+            goals.goal = data
+            $scope.goal = goals.goal
+            $scope.files = []
+        })
     } // end of upload
 
     $scope.updateGoal = function(){
@@ -119,13 +118,14 @@ function($scope,$rootScope, $stateParams, goals,$templateCache,$compile,$http,ve
         });
     }// enf of deleteUserClick
 
-        $scope.goToPrevGoal = function(){
-            var nextId = $scope.prev_goal.id
-            $state.go('goal', { 'id': nextId, 'goal': 'prev'})
-        }
-        $scope.goToNextGoal = function(){
-            var nextId = $scope.next_goal.id
-            $state.go('goal', { 'id': nextId, 'goal': 'nxt'})
-        }
-}
-])
+    $scope.goToPrevGoal = function(){
+        var nextId = $scope.prev_goal.id
+        $state.go('goal', { 'id': nextId, 'goal': 'prev'})
+    }
+
+    $scope.goToNextGoal = function(){
+        var nextId = $scope.next_goal.id
+        $state.go('goal', { 'id': nextId, 'goal': 'nxt'})
+    }
+
+}])

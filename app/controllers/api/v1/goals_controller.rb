@@ -72,7 +72,18 @@ class Api::V1::GoalsController < ApiController
         goal = Goal.find(params[:id])
         goal.file = goal_params[:file] 
         if goal.save
-            render :json => {}, status: 200
+            render :json => goal, status: 200
+        else
+            render :json => {}, status: 422
+        end
+    end
+
+    def destroy_file
+        goal = Goal.find(params[:id])
+        goal.remove_file!
+        if goal.save
+            goal = goal.to_json(include: [:user,:category])
+            render :json => goal, status: 200
         else
             render :json => {}, status: 422
         end

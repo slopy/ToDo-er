@@ -33,9 +33,8 @@
                     </div>
                     <div  class="col-sm-4 text-right">
                         <div class="files_container">
-                            <button class="btn btn-sm btn-success" ngf-select ng-model="files" ngf-multiple="true">Upload File</button><br/>
-                            <small>or you can drag and drop it</small>
-                            <div class="" ngf-select ngf-change="upload($files)" ></div>
+                            <button class="btn btn-sm btn-success" ngf-select ng-model="files" ngf-change="upload(files)" ngf-multiple="false">Upload File</button><br/>
+                            <small>or you can drag and drag and drop it here</small>
                         </div>
                     </div>
                     <div class="col-sm-7 top_line">
@@ -57,7 +56,6 @@
                     <div class="col-sm-5 goal_timestamp top_line">
                             <b>{{goal.user.email}}</b><br/>
                             {{goal.created_at | date: 'fullDate'}}<br/>
-                            <!-- updated at {{goal.updated_at | date: 'fullDate'}}  -->
                     </div>
 
                     <div class="col-sm-7">
@@ -97,17 +95,27 @@
 
 </div>
 <div class="row">
-    <div class="col-sm-3"></div>
-    <div class="col-sm-3 col-centered" ng-if="goal.file.url.length > 0">
+    <div class="col-sm-3 col-centered" ng-show="goal.file.url && !files[0]">
         <div class="panel panel-default text-center">
+            <div class="panel-heading">
+                Attached file:
+                <i class="fa fa-times pull-right destroy_button" ng-click="deleteGoalFile()">
+                </i>
+            </div>
+            <div class="panel-body>">
             <a href="{{goal.file.url}}" download>
-                <img src="{{goal.file.url}}" ngf-accept="'image/*'" class="image_preview">
+                <img src="{{goal.file.url}}" ngf-accept="'image/*'" class="file_image">
             </a>
-            <button>x</button>
+            </div>
         </div>
     </div>
-    <div class="col-sm-3 col-centered" ng-if="files[0]">
-        <div class="panel panel-default text-center">
+    <div class="col-sm-3 col-centered" ng-show="files[0]">
+        <div class="panel panel-success text-center">
+            <div class="panel panel-heading">
+                New file attached:
+            <i class="fa fa-times pull-right destroy_button" ng-click="deleteGoalFile()">
+            </i>
+            </div>
             <img ngf-src="files[0]" ngf-accept="'image/*'" class="image_preview">
         </div>
     </div>
