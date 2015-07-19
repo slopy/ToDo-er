@@ -1,7 +1,6 @@
-  <h3>
-  <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
-
-    </h3>
+<h3>
+    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+</h3>
 
 <div class="row">
 
@@ -14,15 +13,13 @@
                 </p>
             </div>
         </div>
-
     </div>
 
     <div class="col-sm-6 this_goal" ngf-drop ng-model="files" class="drop-box" 
         ngf-drag-over-class="drop_zone" ngf-multiple="false" ngf-allow-dir="true"
-        ngf-accept="'image/*,application/pdf'">
+        ngf-accept="'image/*,application/pdf'" ngf-reset-on-click="true">
 
         <div class="panel panel-default">
-
             <div class="panel panel-body">
                 <div class="row ">
                     <div class="col-sm-8 ">
@@ -33,31 +30,29 @@
                     </div>
                     <div  class="col-sm-4 text-right">
                         <div class="files_container">
-                            <button class="btn btn-sm btn-success" ngf-select ng-model="files" ngf-change="upload(files)" ngf-multiple="false">Upload File</button><br/>
+                            <button class="btn btn-sm btn-success" ngf-select ng-model="files" ngf-change="upload(files)" ngf-multiple="false" ngf-keep-distinct="true">Upload File</button><br/>
                             <small>or you can drag and drag and drop it here</small>
                         </div>
                     </div>
                     <div class="col-sm-7 top_line">
                         <p>
-                        This goal is
-                        <span class="waiting" ng-if="goal.active == false">Waiting</span>
-                        <span class="active" ng-if="goal.active == true && goal.done == false">Active</span>
-                        <span class="achieved" ng-if="goal.done == true">Achieved</span>
+                            This goal is
+                            <span class="waiting" ng-if="goal.active == false">Waiting</span>
+                            <span class="active" ng-if="goal.active == true && goal.done == false">Active</span>
+                            <span class="achieved" ng-if="goal.done == true">Achieved</span>
                         </p>
 
                         And it is done in:
                         <div ng-if="goal.done_percent > -1" class="progress">
-                          <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{goal.done_percent}}" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{goal.done_percent}}" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
                             {{goal.done_percent}}%
-                          </div>   
-                    </div>
-                     
+                            </div>   
+                        </div>
                     </div>
                     <div class="col-sm-5 goal_timestamp top_line">
                             <b>{{goal.user.email}}</b><br/>
                             {{goal.created_at | date: 'fullDate'}}<br/>
                     </div>
-
                     <div class="col-sm-7">
                         <h4> 
                             <p>
@@ -68,7 +63,6 @@
                             <br/>
                         </h4>
                     </div>
-
                     <div class="col-sm-5 buttons_container">
                         <a class="btn btn-default" ng-click="editGoalClick(goal)">Edit</a>
                         <a ng-click="deleteGoalClick()" class="btn btn-danger">
@@ -76,12 +70,9 @@
                         </a>
                     </div>
                 </div>
-   
-
             </div>
         </div>
     </div>
-
     <div class="col-sm-3 next_goal">
         <div ng-show="next_goal.id > 0" ng-click="goToNextGoal()" class="panel panel-default">
             <div class="panel panel-body">
@@ -92,7 +83,6 @@
             </div>
         </div>
     </div>
-
 </div>
 <div class="row">
     <div class="col-sm-3 col-centered" ng-show="goal.file.url && !files[0]">

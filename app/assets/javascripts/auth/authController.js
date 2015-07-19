@@ -11,7 +11,7 @@ function($scope, $state, Auth){
         }, function(data){
             $scope.error = data.data.error
         });
-    };
+    }; // end of login
 
     $scope.register = function() {
         Auth.register($scope.user).then(function(){
@@ -20,6 +20,6 @@ function($scope, $state, Auth){
         }, function(data){
             $scope.errors = data.data.errors
         });
-    };
+    }; // end of register
 
 }]);

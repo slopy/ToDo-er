@@ -1,9 +1,8 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-body{
+body {
   overflow-x: hidden;
-  
 }
 
 .main {
@@ -11,16 +10,15 @@ body{
 
 // login and registration
 
-.login_errors{
+.login_errors {
     color: red
 }
 
-
-.col-title{
+.col-title {
   padding-bottom: 10px;  
 }
 
-.thumbnail-left{
+.thumbnail-left {
   padding-left: 10px;
   padding-bottom: 10px;
 
@@ -34,7 +32,7 @@ body{
 
 }
 
-.thumbnail-right{
+.thumbnail-right {
   padding-right: 0px;
   
   .btn {
@@ -44,25 +42,23 @@ body{
 }
 
 
-.goal_description{
+.goal_description {
   min-height: 50px;
 }
 
-#add_goal_form, #modal_edit_goal{
-  .modal_errors{
+#add_goal_form, #modal_edit_goal {
+  
+  .modal_errors {
     color: red;
   }
 }
-
 
 #loading-bar-spinner {
     display: block;
     position: fixed;
     left: calc(50% - 20px);
     top: 15px;
-/*    width: 1000px;
-    height: 1000px;
-*/    z-index: 1049;
+    z-index: 1049;
 }
 
 #loading-bar-spinner .spinner-icon {
@@ -74,8 +70,8 @@ body{
     border-radius: 2px;
 }
 
+// _user_profile 
 
-// my profile 
 .avatar{
   font-size: 40px;
 }
@@ -83,6 +79,7 @@ body{
 
 #my_profile_form_container {
   display: none;
+
   form {
     width:100%; 
     margin:0 auto;
@@ -90,9 +87,8 @@ body{
   }
 }
 
-#modal_delete_confirmation{
+#modal_delete_confirmation {
   width: 200px;
-  text-align: right;
   button {
     margin: auto;
   }
@@ -103,9 +99,10 @@ body{
 
 }
 
-.categories_container{
+.categories_container {
     margin-bottom: 10px;
 }
+
 span.category {
     font-size: 14px;
     width: 100%;
@@ -119,35 +116,35 @@ span.category {
         color: #5bc0de;
     }
 }
-// goal site 
 
-.drop_zone{
-      
+// _goal.html
+
+.drop_zone {   
     outline: 2px solid #428bca;
     outline-offset: 2px;
 
 }
 
-.destroy_button{
+.destroy_button {
     cursor: pointer;
 }
 
-.image_preview{
+.image_preview {
     max-width:100%;
     max-height:100%;
 }
 
-.file_image{
+.file_image {
     max-width:100%;
     max-height:100%;
 }
 
-.col-centered{
+.col-centered {
     float: none;
     margin: 0 auto;
 }
 
-.prev_goal{
+.prev_goal {
     opacity: 0.5;
 }
 
@@ -156,42 +153,37 @@ span.category {
     cursor: pointer;
 }
 
-.this_goal{
-    .top_line{
+.this_goal {
+
+    .top_line {
         padding-top: 5px;
         border-top: thin solid;  
     }
-    .goal_timestamp{
+    .goal_timestamp {
         text-align: right;
         font-size: 12px;
     }
-    .goal_title{
+    .goal_title {
         margin-top: 0px;
     }
-    .goal_description{
+    .goal_description {
         padding-bottom: 20px;
     }
-    .files_container{
-
-    }
-    .goal_category{
-
-    }
-    .waiting{
+    .waiting {
         color: green;
     }
-    .active{
+    .active {
         color: green;
     }
-    .achieved{
+    .achieved {
         color: brown;
     }
-    .buttons_container{  
+    .buttons_container {  
         text-align: right;
     }
 }
 
-.next_goal{
+.next_goal {
     opacity: 0.5;
 }
 

@@ -48,9 +48,10 @@ function($http,versionUrl){
         }).error(function(data){
             angular.copy(data.errors, obj.errors)
             angular.copy(data.goal, obj.goal)
+            console.log(JSON.stringify(data.errors))
 
         });
-    }
+    } // end of create
 
     obj.show = function(id) {
         return $http.get('/api/' + versionUrl + 'goals/' + id + '.json').success(function(data){
@@ -59,7 +60,7 @@ function($http,versionUrl){
             angular.copy(obj.set_prev_goal(), obj.prev_goal)
             angular.copy(obj.set_next_goal(), obj.next_goal)
         })
-    }
+    } // end of show
     
     obj.toggleActiveState =function(goal) {
         return $http.get('/api/' + versionUrl + 'active_change/' + goal.id + '.json').success(function(data){
@@ -72,7 +73,7 @@ function($http,versionUrl){
                 obj.waiting_goals.splice(0, 0,data)
             }
         })
-    }
+    } // end of toggle active state
 
     obj.toggleDoneState =function(goal) {
         return $http.get('/api/' + versionUrl + 'done_change/' + goal.id + '.json').success(function(data){
@@ -84,7 +85,7 @@ function($http,versionUrl){
                 obj.active_goals.splice(0, 0,data)
             }
         })
-    }
+    } // end of toggle done state
 
     obj.updateGoal = function(scope,goal){
 
@@ -139,7 +140,7 @@ function($http,versionUrl){
         }
 
         return {}
-    } // end of prev_goal
+    } // end of set_prev_goal
 
     obj.set_next_goal = function(){
  
@@ -160,8 +161,7 @@ function($http,versionUrl){
 
         return {}
 
-    } // end of next_goal
-
+    } // end of set_next_goal
 
     obj.getCategories = function(){
         return $http.get('/api/' + versionUrl + 'categories.json').success(function(date){
@@ -169,9 +169,7 @@ function($http,versionUrl){
         }).error(function(data){
         })
         return {}
-
-    }
-
+    } // end of getCategories
 
     function findWithAttr(array, attr, value) {
     for(var i = 0; i < array.length; i += 1) {
@@ -179,10 +177,9 @@ function($http,versionUrl){
             return i;
         }
         }
-    }
+    } // helper method
 
-    return obj;
-
+    return obj
 }]) // end of factory
 
 

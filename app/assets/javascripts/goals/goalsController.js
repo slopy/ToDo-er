@@ -13,6 +13,7 @@ function($scope,$rootScope, $stateParams, goals,$templateCache,$compile,$http,ve
 
     goals.getAll()
     goals.show($stateParams.id)
+
     $scope.goal = goals.goal
     $scope.prev_goal = goals.prev_goal
     $scope.next_goal = goals.next_goal
@@ -44,6 +45,7 @@ function($scope,$rootScope, $stateParams, goals,$templateCache,$compile,$http,ve
             goals.goal = data
             $scope.goal = goals.goal
             $scope.files = []
+            $('input[type="file"]').value = "";
         })
     } // end of upload
 
@@ -54,16 +56,13 @@ function($scope,$rootScope, $stateParams, goals,$templateCache,$compile,$http,ve
           description: $scope.goal.description,
           category: $scope.goal.category.title
           })
-
     } // end of updateGoal
 
     $scope.deleteGoalClick = function(){
         $http.delete('/api/' + versionUrl + '/goals/' + $scope.goal.id + '.json').success(function(){
             $state.go('home')
         })
-
     } // end of deleteGoalClick
-
 
     $scope.editGoalClick = function(goal){
         $scope.errors = {}
@@ -91,13 +90,11 @@ function($scope,$rootScope, $stateParams, goals,$templateCache,$compile,$http,ve
             $(this).parent().hide();
             $.fancybox.close();
         });
-
     } // end of editGoalClick
 
     $scope.deleteUserClick = function(){
         var content = $templateCache.get('users/_modal_delete_confirmation.html')
         var template = $compile(content)($scope)
-
 
         $.fancybox.open([{ 
           content : template,
@@ -116,16 +113,16 @@ function($scope,$rootScope, $stateParams, goals,$templateCache,$compile,$http,ve
                 $(this).parent().hide();
                 $.fancybox.close();
         });
-    }// enf of deleteUserClick
+    } // end of deleteUserClick
 
     $scope.goToPrevGoal = function(){
         var nextId = $scope.prev_goal.id
         $state.go('goal', { 'id': nextId, 'goal': 'prev'})
-    }
+    } // end of goToPrevGoal
 
     $scope.goToNextGoal = function(){
         var nextId = $scope.next_goal.id
         $state.go('goal', { 'id': nextId, 'goal': 'nxt'})
-    }
+    } // end of goToNextGoal
 
 }])

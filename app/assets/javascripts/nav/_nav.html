@@ -3,8 +3,8 @@
    <li li ng-show="signedIn()"><a href="#/home">Goals</a></li>
 </ul>
 
-<div class="collapse navbar-collapse pull-right">
-  <ul class="nav navbar-nav">
+<div class="navbar-right">
+  <ul class="nav navbar-nav navb">
     <li ng-hide="signedIn()"><a href="#/login">Log In</a></li>
     <li ng-hide="signedIn()"><a href="#/register">Register</a></li>
     <li ng-show="signedIn()"><a href="#/my_profile">{{ user.email }}</a></li>

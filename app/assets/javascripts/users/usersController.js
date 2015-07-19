@@ -9,10 +9,11 @@ app.controller('UsersController', [
 'Auth',
 'versionUrl',
 function($scope,$state,$http,$compile,$templateCache,goals,users,Auth,versionUrl){
+        goals.getAll()
         users.get_stats()
         $scope.stats = users.stats
         $scope.user = Auth._currentUser
-        goals.getAll()
+        
         $scope.goals = goals
         $scope.goal = { title: 'Goal preview', description: ''}
 
@@ -21,19 +22,12 @@ function($scope,$state,$http,$compile,$templateCache,goals,users,Auth,versionUrl
         })
         $scope.categories = objs
 
-      // gives another movie array on change
-    $scope.updateCategories = function(typed){
-        // MovieRetriever could be some service returning a promise
-        return $scope.movies
-    }
-
     $scope.deleteCategory = function(category){
         $http.delete('/api/' + versionUrl + 'categories/' + category +'.json').success(function(data){
             var index = $scope.categories.indexOf(category);
             $scope.categories.splice(index, 1); 
         })
-
-    }
+    } // end of delete Category
 
     $scope.updateUser = function(){
         return $http.put('/api/' + versionUrl + '/users.json', {user: $scope.user}).success(function(data){
@@ -79,7 +73,6 @@ function($scope,$state,$http,$compile,$templateCache,goals,users,Auth,versionUrl
                 $(this).parent().hide();
                 $.fancybox.close();
         });
-
     } // end of deleteUserClick
 
     $scope.deleteGoalClick = function(){

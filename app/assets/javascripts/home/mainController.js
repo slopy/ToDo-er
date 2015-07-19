@@ -8,7 +8,9 @@ function($scope, $templateCache,$compile,$http,goals){
     goals.getAll()
     $scope.goal = goals.goal
     $scope.goals = goals
-    $scope.errors = goals.errors    
+    $scope.errors = goals.errors   
+    $scope.category = {}
+
     var objs = goals.categories.map(function(obj){
       return obj.title
     })
@@ -19,23 +21,19 @@ function($scope, $templateCache,$compile,$http,goals){
     }
 
     $scope.addGoal = function(){
-
         goals.create($scope,{
             title: $scope.title,
             description: $scope.description,
             category: $scope.category.title
         });
-
     }; // end of addGoal
 
     $scope.toggleActive = function(goal) { 
         goals.toggleActiveState(goal)
-
     } // end of toggleActive
 
     $scope.toggleDone = function(goal) {
-        goals.toggleDoneState(goal)
-        
+        goals.toggleDoneState(goal)    
     } // end of toggleActive
 
     $scope.updateGoal = function(){
@@ -44,9 +42,7 @@ function($scope, $templateCache,$compile,$http,goals){
           title: $scope.goal.title,
           description: $scope.goal.description,
           category: $scope.goal.category.title
-
           })
-
     } // edn of updateGoal
 
     $scope.editGoalClick = function(goal){
@@ -76,7 +72,6 @@ function($scope, $templateCache,$compile,$http,goals){
         });
     })
     $scope.goal = goals.goal
-
     } // end of editGoalClick
 
      $scope.addNewGoalClick = function() {
@@ -99,9 +94,6 @@ function($scope, $templateCache,$compile,$http,goals){
             }
           },
         }]); // end of fancybox 
-
     }; // end of addNewGoalClick
 
-} // end of controller function
-
-])
+}]) // end of controller function

@@ -1,7 +1,7 @@
 <div id="add_goal_form">
     
     <form ng-submit="addGoal()">
-        <span class="modal_errors">{{errors.title[0]}}</span>
+        <span class="modal_errors" ng-if="errors.title"> Title {{errors.title[0]}}</span>
         <div class="form-group">
             <input type="text"
                 class="form-control"
@@ -9,7 +9,7 @@
                 ng-model="title"></input>
         </div>
 
-        <span class="modal_errors">{{errors.description[0]}}</span>
+        <span class="modal_errors" ng-if="errors.description">Description {{errors.description[0]}}</span>
         <div class="form-group">
             <textarea type="text"
                 rows="4" cols="50"
@@ -18,8 +18,7 @@
                 ng-model="description"></textarea>
         </div>
 
-         <autocomplete ng-model="category.title" data="categories" on-type="updateCategories" attr-placeholder="category" attr-inputclass="form-control" >
-             
+         <autocomplete ng-model="category.title" data="categories" on-type="updateCategories" attr-placeholder="category" attr-inputclass="form-control">
          </autocomplete>
       
         <button type="submit" class="btn btn-primary">Goal</button>
