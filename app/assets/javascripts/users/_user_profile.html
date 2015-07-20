@@ -135,6 +135,11 @@
                     <p class="goal_description">
                         {{goal.description}}
                     </p>
+                    <p ng-show="goal.category.title">
+                        <h4><span class="label label-primary">
+                        {{goal.category.title}}
+                        </span></h4>
+                    </p>
                     <br/>
                     <div ng-show="goal.description" class="text-center">
                         <a class="btn btn-sm btn-info" href="#/goal/{{goal.id}}">Details</a>

@@ -47,6 +47,8 @@ function($http,versionUrl){
             $.fancybox.close()
         }).error(function(data){
             angular.copy(data.errors, obj.errors)
+            obj.errors.category_errors = {}
+            angular.copy(data.category_errors, obj.errors.category_errors)
             angular.copy(data.goal, obj.goal)
         });
     } // end of create
@@ -113,8 +115,8 @@ function($http,versionUrl){
             $.fancybox.close();
 
         }).error(function(data){
-            
             scope.errors = data.errors
+            scope.errors.category_errors = data.category_errors
             angular.copy(data.goal, obj.goal)
         })
         return obj
@@ -175,7 +177,7 @@ function($http,versionUrl){
             return i;
         }
         }
-    } // helper method
+    } // helper method for find in array
 
     return obj
 }]) // end of factory

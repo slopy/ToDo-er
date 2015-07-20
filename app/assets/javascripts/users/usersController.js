@@ -13,9 +13,10 @@ function($scope,$state,$http,$compile,$templateCache,goals,users,Auth,versionUrl
         users.get_stats()
         $scope.stats = users.stats
         $scope.user = Auth._currentUser
+        $scope.category = {}
         
         $scope.goals = goals
-        $scope.goal = { title: 'Goal preview', description: ''}
+        $scope.goal = { title: 'Goal preview', description: '', category: {title: ""}}
 
         var objs = goals.categories.map(function(obj){
           return obj.title

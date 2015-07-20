@@ -16,7 +16,7 @@
     </div>
 
     <div class="col-sm-6 this_goal" ngf-drop ng-model="files" class="drop-box" 
-        ngf-drag-over-class="drop_zone" ngf-multiple="false" ngf-allow-dir="true"
+        ngf-drag-over-class="drop_zone" ngf-multiple="true" ngf-allow-dir="true"
         ngf-accept="'image/*,application/pdf'" ngf-reset-on-click="true">
 
         <div class="panel panel-default">
@@ -30,7 +30,7 @@
                     </div>
                     <div  class="col-sm-4 text-right">
                         <div class="files_container">
-                            <button class="btn btn-sm btn-success" ngf-select ng-model="files" ngf-change="upload(files)" ngf-multiple="false" ngf-keep-distinct="true">Upload File</button><br/>
+                            <button class="btn btn-sm btn-success" ngf-select ng-model="files" ngf-multiple="false" ngf-keep-distinct="true" ng-disabled="upload_disable">Upload File</button><br/>
                             <small>or you can drag and drag and drop it here</small>
                         </div>
                     </div>
@@ -103,8 +103,8 @@
         <div class="panel panel-success text-center">
             <div class="panel panel-heading">
                 New file attached:
-            <i class="fa fa-times pull-right destroy_button" ng-click="deleteGoalFile()">
-            </i>
+<!--             <i class="fa fa-times pull-right destroy_button" ng-click="deleteGoalFile()">
+            </i> -->
             </div>
             <img ngf-src="files[0]" ngf-accept="'image/*'" class="image_preview">
         </div>

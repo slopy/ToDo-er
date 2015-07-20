@@ -17,7 +17,7 @@
                 placeholder="description"
                 ng-model="goal.description"></textarea>
         </div>
-
+        <span class="modal_errors" ng-if="errors.category_errors.title">Category {{errors.category_errors.title[0]}}</span>
         <autocomplete ng-model="goal.category.title" data="categories" on-type="updateCategories" attr-placeholder="category" attr-inputclass="form-control" >
         </autocomplete>
 

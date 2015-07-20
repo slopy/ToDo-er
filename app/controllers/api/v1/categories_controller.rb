@@ -16,8 +16,11 @@ class Api::V1::CategoriesController < ApiController
 
     def destroy
         category = Category.where(title: params[:id]).first
-        category.destroy!
-        respond_with :json => {}, status: 200
+        if !category.nil? && category.destroy!
+            respond_with :json => {}, status: 200
+        else
+            respond_with :json => {}, status: 422
+        end
     end
 
     private 

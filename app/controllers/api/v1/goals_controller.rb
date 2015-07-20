@@ -7,14 +7,19 @@ class Api::V1::GoalsController < ApiController
 
     def create
         params[:goal].empty? ? goal=Goal.new : goal = Goal.new(goal_params)
-        category = Category.where(title: params[:category]).first_or_create
+        category = Category.where(title: params[:category]).first_or_create if params[:category]
         goal.category = category
         goal.user = current_user
         if goal.save
             goal.save!
             render :json => goal.to_json(include: :category), status: 200
         else
-            render :json => {:errors => goal.errors, :goal => goal }, status: 422
+            if params[:category]
+                render :json => {:errors => goal.errors,
+                 :category_errors => category.errors, :goal => goal  }, status: 422
+            else
+                render :json => {:errors => goal.errors, :goal => goal  }, status: 422
+            end
         end
     end
 
@@ -27,18 +32,26 @@ class Api::V1::GoalsController < ApiController
         goal = Goal.find(params[:id])
         goal_check = Goal.new(goal_params)
         goal_check.user = current_user
-        category = Category.where(title: params[:category]).first_or_create
+        category = Category.where(title: params[:category]).first_or_create if params[:category]
         goal.category = category
-        if goal_check.valid?
+        if goal_check.valid? && (category.valid? || !params[:category] || params[:category].empty?)
             goal.update_columns(goal_params)
             goal.update_columns(category_id: category.id)
             goal = goal.to_json(include: [:user,:category])
-            render :json => {:goal => goal, :category => category }, status: 200
+            if params[:category]
+                render :json => {:goal => goal, :category => category }, status: 200
+            else
+                render :json => {:goal => goal}, status: 200
+            end
         else
             goal.category = category
             goal.update(goal_params)
-    
-            render :json => {:errors => goal.errors, :goal => goal }, status: 422
+            if params[:category]
+                render :json => {:errors => goal.errors,
+                 :category_errors => category.errors, :goal => goal  }, status: 422
+            else
+                render :json => {:errors => goal.errors, :goal => goal  }, status: 422
+            end
         end # to avoid updated_at change
 
     end

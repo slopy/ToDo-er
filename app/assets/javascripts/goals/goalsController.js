@@ -13,8 +13,9 @@ function($scope,$rootScope, $stateParams, goals,$templateCache,$compile,$http,ve
 
     goals.getAll()
     goals.show($stateParams.id)
-
+    
     $scope.goal = goals.goal
+  
     $scope.prev_goal = goals.prev_goal
     $scope.next_goal = goals.next_goal
 
@@ -24,6 +25,15 @@ function($scope,$rootScope, $stateParams, goals,$templateCache,$compile,$http,ve
     $scope.categories = objs
 
     $scope.files = []
+    $scope.upload_disable = false
+
+    $scope.$watch('files', function () {
+        if ($scope.files.length == 0){
+        $scope.upload($scope.files);
+            
+        }
+
+    });
 
     $scope.upload = function(files) {
         if (files != null){
@@ -37,19 +47,25 @@ function($scope,$rootScope, $stateParams, goals,$templateCache,$compile,$http,ve
                     fileFormDataName: 'goal[file]'
                 });
             }
-        }
+        } 
+
     } // end of upload
 
     $scope.deleteGoalFile = function(files) {
         $http.get('/api/' + versionUrl + '/goal/' + $stateParams.id + '/destroy_file.json').success(function(data){
             goals.goal = data
             $scope.goal = goals.goal
-            $scope.files = []
-            $('input[type="file"]').value = "";
+            $scope.files[0] = ''
+            $scope.upload_disable = true
+
         })
+
     } // end of upload
 
     $scope.updateGoal = function(){
+        if (typeof $scope.goal.category.title === "undefined") {
+            $scope.goal.category.title = ""
+        }
         goals.updateGoal($scope,{
           id: $scope.goal.id,
           title: $scope.goal.title,
