@@ -33,13 +33,18 @@
 
                 </div>
                 <div class="row">
-                    <div class="col-sm-5 text-right" >
-                        <span class="label label-default attachment pull-left" ng-show="goal.file.url">
-                            <small>Attachment</small>
+                    <div class="col-sm-2" ng-show="goal.file.url">
+                        <span class="label label-default attachment pull-left" >
+                            <small>File</small>
                             <i class="fa fa-paperclip"></i>
                         </span>
                     </div>
-                    <div class="col-sm-7 text-right">
+                    <div class="col-sm-2" ng-show="findCategoryById(goals.categories,goal.category_id)">
+                        <span class="label label-primary goal_category attachment  pull-left" >
+                        {{ findCategoryById(goals.categories,goal.category_id) }}
+                        </span>
+                    </div>
+                    <div class="col-sm-8 pull-right text-right">
                         <a class="btn btn-sm btn-info" href="#/goal/{{goal.id}}">Details</a>
                         <a class="btn btn-sm btn-default" ng-click="editGoalClick(goal)">Edit</a>
                     </div>
@@ -80,13 +85,18 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-5 text-right" >
-                        <span class="label label-default attachment pull-left" ng-show="goal.file.url">
-                            <small>Attachment</small>
+                    <div class="col-sm-2" ng-show="goal.file.url">
+                        <span class="label label-default attachment pull-left" >
+                            <small>File</small>
                             <i class="fa fa-paperclip"></i>
                         </span>
                     </div>
-                    <div class="col-sm-7 text-right">
+                    <div class="col-sm-2" ng-show="findCategoryById(goals.categories,goal.category_id)">
+                        <span class="label label-primary goal_category attachment  pull-left" >
+                        {{ findCategoryById(goals.categories,goal.category_id) }}
+                        </span>
+                    </div>
+                    <div class="col-sm-8 pull-right text-right">
                         <a class="btn btn-sm btn-info" href="#/goal/{{goal.id}}">Details</a>
                         <a class="btn btn-sm btn-default" ng-click="editGoalClick(goal)">Edit</a>
                     </div>
@@ -120,20 +130,18 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-4 text-right" >
-                        <span class="label label-default attachment pull-left" ng-show="goal.file.url">
-                            <small>Attachment</small>
+                    <div class="col-sm-2" ng-show="goal.file.url">
+                        <span class="label label-default attachment pull-left" >
+                            <small>File</small>
                             <i class="fa fa-paperclip"></i>
                         </span>
                     </div>
-                    <div class="col-sm-3">
-                            <div ng-show="goal.category.title">
-                                <span class="label label-primary goal_category">
-                                {{goal.category.title}}
-                                </span>
-                            </div>
+                    <div class="col-sm-2" ng-show="findCategoryById(goals.categories,goal.category_id)">
+                        <span class="label label-primary goal_category attachment  pull-left" >
+                        {{ findCategoryById(goals.categories,goal.category_id) }}
+                        </span>
                     </div>
-                    <div class="col-sm-5 text-right">
+                    <div class="col-sm-8 pull-right text-right">
                         <a class="btn btn-sm btn-info" href="#/goal/{{goal.id}}">Details</a>
                         <a class="btn btn-sm btn-default" ng-click="editGoalClick(goal)">Edit</a>
                     </div>

@@ -96,4 +96,14 @@ function($scope, $templateCache,$compile,$http,goals){
         }]); // end of fancybox 
     }; // end of addNewGoalClick
 
+    $scope.findCategoryById = function(arr,id){ 
+
+      for(var i = 0; i < arr.length; i += 1){
+      var result = arr[i];
+      if(result.id === id){
+          return result.title;
+          }
+      }
+    } // end of findCategoryById
+
 }]) // end of controller function
