@@ -1,5 +1,5 @@
 
-app.directive('autocomplete', function() {
+app.directive('autocomplete',[function() {
   var index = -1;
 
   return {
@@ -260,7 +260,7 @@ app.directive('autocomplete', function() {
           </ul>\
         </div>'
   };
-});
+}]);
 
 app.filter('highlight', ['$sce', function ($sce) {
   return function (input, searchParam) {
@@ -279,7 +279,7 @@ app.filter('highlight', ['$sce', function ($sce) {
   };
 }]);
 
-app.directive('suggestion', function(){
+app.directive('suggestion',[function(){
   return {
     restrict: 'A',
     require: '^autocomplete', // ^look for controller on parents element
@@ -294,4 +294,4 @@ app.directive('suggestion', function(){
       });
     }
   };
-});
+}]);

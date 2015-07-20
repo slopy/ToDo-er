@@ -13,8 +13,7 @@ app.config([
 'AuthInterceptProvider',
 function($stateProvider, $urlRouterProvider,$httpProvider,cfpLoadingBarProvider, AuthProvider,versionUrl,AuthInterceptProvider,Auth) {
 
-  $stateProvider
-    .state('home', {
+  $stateProvider.state('home', {
         url: '/home',
         templateUrl: 'home/_home.html',
         controller: 'MainController',

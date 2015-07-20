@@ -48,8 +48,6 @@ function($http,versionUrl){
         }).error(function(data){
             angular.copy(data.errors, obj.errors)
             angular.copy(data.goal, obj.goal)
-            console.log(JSON.stringify(data.errors))
-
         });
     } // end of create
 

@@ -1,6 +1,7 @@
 class Api::V1::RegistrationsController < Devise::RegistrationsController
 # before_filter :configure_sign_up_params, only: [:create]
 # before_filter :configure_account_update_params, only: [:update]
+respond_to :json
 
   # GET /resource/sign_up
   # def new
@@ -13,7 +14,7 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
     render :json => { :errors => ["Provide email and password"] },  :success => false, :status => :unauthorized
     else
         super
-        sign_in(:user,resource)
+        sign_in(:user,resource) 
     end
   end
 

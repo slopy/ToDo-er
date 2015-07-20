@@ -47,7 +47,6 @@ function($scope,$state,$http,$compile,$templateCache,goals,users,Auth,versionUrl
             $state.go('register')
         })
         .error(function(data){
-            console.log(data);
         })
     } // end of deleteUser
 
@@ -93,7 +92,6 @@ function($scope,$state,$http,$compile,$templateCache,goals,users,Auth,versionUrl
             angular.copy(data, $scope.goal);
         })
         .error(function(data){
-            console.log(data);
         })
     } // previewGoal
 
