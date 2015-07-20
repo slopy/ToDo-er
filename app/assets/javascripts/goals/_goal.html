@@ -43,7 +43,7 @@
                         </p>
 
                         And it is done in:
-                        <div ng-if="goal.done_percent > -1" class="progress">
+                        <div ng-if="goal.done_percent > 0" class="progress">
                             <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{goal.done_percent}}" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
                             {{goal.done_percent}}%
                             </div>   
@@ -78,7 +78,7 @@
             <div class="panel panel-body">
                 <h3>{{next_goal.title}}</h3>
                 <p class="goal_description">
-                        {{next_goal.description}}
+                    {{next_goal.description}}
                 </p>
             </div>
         </div>
