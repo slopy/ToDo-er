@@ -6,6 +6,11 @@ body {
 }
 
 .main {
+  border-bottom: black dotted 1px;
+
+  .page-header{
+    margin-top: 0px;
+  }
 }
 
 // login and registration
@@ -16,6 +21,11 @@ body {
 
 .col-title {
   padding-bottom: 10px;  
+}
+
+.thumbnail-left-toggle{
+  padding-left: 0px;
+
 }
 
 .thumbnail-left {
@@ -44,6 +54,14 @@ body {
 
 .goal_description {
   min-height: 50px;
+}
+
+.attachment{
+  font-size: 13px;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  margin-top: 8px;
 }
 
 #add_goal_form, #modal_edit_goal {

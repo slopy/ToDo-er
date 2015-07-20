@@ -135,13 +135,13 @@
                     <p class="goal_description">
                         {{goal.description}}
                     </p>
-                    <p ng-show="goal.category.title">
+                    <div ng-show="goal.category.title.length > 2">
                         <h4><span class="label label-primary">
                         {{goal.category.title}}
                         </span></h4>
-                    </p>
+                    </div>
                     <br/>
-                    <div ng-show="goal.description" class="text-center">
+                    <div ng-show="goal.description" class="text-center hidden-xs">
                         <a class="btn btn-sm btn-info" href="#/goal/{{goal.id}}">Details</a>
                         <a class="btn btn-sm btn-default" ng-click="editGoalClick(goal)">Edit</a>
                         <a class="btn btn-sm btn-danger" ng-click="deleteGoalClick()">

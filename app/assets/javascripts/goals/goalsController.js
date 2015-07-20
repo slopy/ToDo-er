@@ -28,11 +28,7 @@ function($scope,$rootScope, $stateParams, goals,$templateCache,$compile,$http,ve
     $scope.upload_disable = false
 
     $scope.$watch('files', function () {
-        if ($scope.files.length == 0){
         $scope.upload($scope.files);
-            
-        }
-
     });
 
     $scope.upload = function(files) {

@@ -34,16 +34,17 @@
 //////////////////////
 .view-animate-container {
   position:relative;
-  height:85vh !important;
+  height:90vh !important;
   background:white;
-  height:100%;
   overflow: auto;
   overflow-x: hidden;
 
 }
 
 .slide_from_top {
-  padding:10px;
+
+    overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 .slide_from_top.ng-enter, .slide_from_top.ng-leave {
@@ -59,20 +60,22 @@
   left:0;
   right:0;
   bottom:0;
-  padding:10px;
+  // padding:10px;
+
 }
 
 .slide_from_top.ng-enter {
-  top:-100%;
+  top:-95%;
   opacity: 0;
 
 }
 .slide_from_top.ng-enter.ng-enter-active {
   top:0;
   opacity: 1;
+
 }
 .slide_from_top.ng-leave.ng-leave-active {
-  top:100%;
+  top:95%;
   opacity: 0;
 
 }

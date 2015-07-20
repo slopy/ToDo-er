@@ -8,7 +8,7 @@ function($scope, $templateCache,$compile,$http,goals){
     goals.getAll()
     $scope.goal = goals.goal
     $scope.goals = goals
-    $scope.errors = goals.errors   
+    $scope.errors = goals.errors
     $scope.category = {}
 
     var objs = goals.categories.map(function(obj){

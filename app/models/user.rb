@@ -12,7 +12,6 @@ class User < ActiveRecord::Base
         active_goals = all_goals.where(active: true).where(done: false)
         done_goals = all_goals.where(active: true).where(done: true)
         categories = Category.all
-
         goals = {
             goals: all_goals,
             waiting_goals: waiting_goals,
